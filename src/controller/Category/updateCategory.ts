@@ -25,6 +25,20 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const newCtg = await CategoryService.updateCategoryById(id, name, icon)
 
+        // if (name === oldCtg.name) {
+        //     res.setHeader('Content-type', 'application/json');
+        //     return res.status(304).send(JSON.stringify({
+        //         message: 'You have not made any changes'
+        //     }))
+        // }
+
+        if (oldCtg.name == newCtg.name) {
+            return res.status(200).json({
+                message: 'Siz hech qanday o\'zgarish kiritmadingiz'
+            });
+        }
+
+
         return res.status(201).json({
             message: 'Category updated',
             category: {

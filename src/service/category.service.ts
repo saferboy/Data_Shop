@@ -1,10 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-
-import { Express } from "express";
 import multer from "multer";
 import fs from 'fs'
 import * as fsregular from 'node:fs'
-import updateCategory from "@controller/Category/updateCategory";
+import path from "path";
+import { log } from "console";
 
 const client = new PrismaClient()
 
@@ -44,21 +43,45 @@ export default class CategoryService {
     }
 
     static async updateCategoryById(id: number, name: string, icon: string) {
-        const updateCategory = await client.category.findUnique({ where: { id } });
-
-        if(updateCategory?.icon) {
-            fs.unlinkSync(updateCategory.icon)
+        const oldCategory = await client.category.findUnique({
+            where: { id }
+        })
+        if (oldCategory) {
+            fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
+                if (error) {
+                    console.log(error)
+                    return
+                }
+                // console.log("Category icon deleted");
+            })
         }
+
+        return client.category.update({
+            where: {
+                id
+            },
+            data: {
+                name,
+                icon
+            }
+        })
     }
 
     static async deleteCategory(id: number) {
         const result = await client.category.delete({
             where: {
                 id
+            },
+            include: {
+                product: true
             }
         })
-        fsregular.rm(result.icon, (error) => {
-            console.log("Category icon deleted");
+        fsregular.rm(path.join(__dirname, '../../upload', result.icon), (error) => {
+            if (error) {
+                console.log(error)
+                return
+            }
+            // console.log("Category icon deleted");
         })
         return result
     }
