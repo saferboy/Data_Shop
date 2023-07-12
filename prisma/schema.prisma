@@ -11,14 +11,25 @@ datasource db {
 }
 
 model User {
-  id       Int             @id @default(autoincrement())
-  name     String
-  surname  String
-  phone    String[]
-  email    String
-  address  String
-  password String
-  rating   ProductRating[]
+  id        Int       @id @default(autoincrement())
+  name      String
+  surname   String
+  phone     String[]
+  email     String
+  address   String
+  password  String
+  reviews   Reviews[]
+  reviewsId Int
+  // rating   ProductRating[]
+}
+
+model Reviews {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  comment   String
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
 }
 
 model Category {
@@ -29,37 +40,32 @@ model Category {
 }
 
 model Product {
-  id              Int              @id @default(autoincrement())
-  category        Category         @relation(fields: [categoryId], references: [id])
+  id              Int       @id @default(autoincrement())
+  category        Category  @relation(fields: [categoryId], references: [id])
   categoryId      Int
   name            String
-  image           String
   price           String
-  rating          ProductRating[]
+  image           String
   description     String
-  characteristics Characteristic[]
-  reviews         String
+  characteristics String[]
+  reviews         Reviews[]
+  details         Details[]
+  // rating          ProductRating[]
 }
 
-model ProductRating {
-  id        Int     @id @default(autoincrement())
-  Product   Product @relation(fields: [productId], references: [id])
-  productId Int
-  User      User?   @relation(fields: [userId], references: [id])
-  userId    Int?
-  rating    Int
+model Details {
+  id          Int     @id @default(autoincrement())
+  key         String
+  description String
+  product     Product @relation(fields: [productId], references: [id])
+  productId   Int
 }
 
-model Characteristic {
-  id               Int     @id @default(autoincrement())
-  product          Product @relation(fields: [productId], references: [id])
-  productId        Int
-  brand            String
-  screen_diaganal  String
-  processor_type   String
-  ram              String
-  vidoe_card       String
-  hard_disk_drive  String //ssd
-  update_frequency String // erkan ghz
-  operating_system String
-}
+// model ProductRating {
+//   id        Int     @id @default(autoincrement())
+//   Product   Product @relation(fields: [productId], references: [id])
+//   productId Int
+//   User      User?   @relation(fields: [userId], references: [id])
+//   userId    Int?
+//   rating    Int
+// }
