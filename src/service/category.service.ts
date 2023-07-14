@@ -1,9 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import multer from "multer";
-import fs from 'fs'
 import * as fsregular from 'node:fs'
 import path from "path";
-import { log } from "console";
 
 const client = new PrismaClient()
 
@@ -85,5 +82,4 @@ export default class CategoryService {
         })
         return result
     }
-
 }
