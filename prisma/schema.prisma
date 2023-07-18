@@ -11,16 +11,23 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  name      String
-  surname   String
-  phone     String[]
-  email     String
-  address   String
-  password  String
-  reviews   Reviews[]
-  reviewsId Int
+  id       Int       @id @default(autoincrement())
+  name     String
+  surname  String
+  phone    String[]
+  email    String
+  address  String
+  password String
+  reviews  Reviews[]
+  role     role      @default(user)
   // rating   ProductRating[]
+}
+
+model Verification {
+  id        String   @unique
+  code      String
+  email     String
+  createdAt DateTime @default(now())
 }
 
 model Reviews {
@@ -40,16 +47,16 @@ model Category {
 }
 
 model Product {
-  id              Int       @id @default(autoincrement())
-  category        Category  @relation(fields: [categoryId], references: [id])
-  categoryId      Int
-  name            String
-  price           String
-  image           String
-  description     String
+  id          Int       @id @default(autoincrement())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  name        String
+  price       String
+  image       String
+  description String
   // characteristics String[]
-  reviews         Reviews[]
-  details         Details[]
+  reviews     Reviews[]
+  details     Details[]
   // rating          ProductRating[]
 }
 
@@ -69,3 +76,10 @@ model Details {
 //   userId    Int?
 //   rating    Int
 // }
+
+enum role {
+  superAdmin
+  admin
+  user
+  none
+}
