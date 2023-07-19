@@ -21,7 +21,14 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             category: {
                 id: find.id,
                 name: find.name,
-                icon: find.icon
+                icon: find.icon,
+                product: find.product.map((detail) => ({
+                    id: detail.id,
+                    name: detail.name,
+                    price: detail.price,
+                    image: detail.image,
+                    description: detail.description
+                }))
             }
         })
 

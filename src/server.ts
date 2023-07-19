@@ -20,4 +20,4 @@ app.use('/upload', express.static(path.join(__dirname, '../upload')))
 
 app.listen(port, () => {
   console.log(`Server http://localhost:${port} portda ishga tushdi.`);
-}); 
+});   

@@ -27,6 +27,9 @@ export default class CategoryService {
         return client.category.findUnique({
             where: {
                 id
+            },
+            include: {
+                product: true
             }
         })
     }
