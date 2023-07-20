@@ -4,6 +4,8 @@ import VerificationService from '@service/verification.service';
 import AuthService from '@service/user.service';
 import { VERIFICATION_TIMEOUT } from '@config/verification';
 import { ResendDto } from '@model/resend.dto';
+import { sendEmail } from '@service/mail.service';
+
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -27,6 +29,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 message: 'Cannot save verification'
             })
         }
+
+        await sendEmail(user.email, code)
 
         return res.status(200).json({
             message: 'Verification code sended to email',
