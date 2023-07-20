@@ -9,5 +9,5 @@ export class Verification {
 
 export interface VerificationDto {
     code: string,
-    vaerificationId: string
+    verificationId: string
 }

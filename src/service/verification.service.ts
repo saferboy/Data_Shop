@@ -7,7 +7,7 @@ const client = new PrismaClient()
 
 export default class VerificationService {
 
-    static async createVaerification(code: string, email: string) {
+    static async createVerification(code: string, email: string) {
         const id = uuid()
 
         return client.verification.create({
@@ -20,7 +20,7 @@ export default class VerificationService {
     }
 
     static async findVerificationById(id: string) {
-        const result = await client.verification.findUnique({
+        const result = await client.verification.findFirst({
             where: {
                 id
             }
@@ -35,7 +35,7 @@ export default class VerificationService {
         return new Verification(id, code, email, new Date(createdAt));
     }
 
-    static async findVerificationVyEmail(email: string) {
+    static async findVerificationByEmail(email: string) {
         return client.verification.findFirst({
             where: {
                 email

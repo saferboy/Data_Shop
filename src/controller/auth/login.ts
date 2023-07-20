@@ -25,29 +25,36 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             })
         }
 
-        if (bcrypt.compareSync(login.password, user.password)) {
-            const payload: Payload = {
-                userId: user.id,
-                email: user.email,
-                address: user.address
-            };
+        const isPasswordValid = bcrypt.compareSync(login.password, user.password)
 
-            const token = await sign(payload)
-
-            return res.status(201).json({
-                message: 'Successfuly login',
-                user: {
-                    id: user.id,
-                    name: user.name,
-                    surname: user.surname,
-                    phone: user.phone,
-                    email: user.email,
-                    address: user.address,
-                    // role: user.role
-                },
-                token: token
-            })
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                message: 'Invalid password',
+            });
         }
+
+        const payload: Payload = {
+            userId: user.id,
+            email: user.email,
+            address: user.address,
+        };
+
+        const token = await sign(payload);
+
+        return res.status(201).json({
+            message: 'Successfully login',
+            user: {
+                id: user.id,
+                name: user.name,
+                surname: user.surname,
+                phone: user.phone,
+                email: user.email,
+                address: user.address,
+                // role: user.role 
+            },
+            token: token,
+        });
+
 
     } catch (err) {
         next(err);

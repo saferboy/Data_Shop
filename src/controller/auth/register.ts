@@ -5,7 +5,6 @@ import { VERIFICATION_TIMEOUT } from '@config/verification';
 import VerificationService from '@service/verification.service';
 import AuthService from '@service/user.service';
 import { sendEmail } from '@service/mail.service';
-import { log } from 'console';
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -26,7 +25,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         await sendEmail(newUser.email, code)
 
-        const verification = await VerificationService.createVaerification(code, newUser.email)
+        const verification = await VerificationService.createVerification(code, newUser.email)
 
         if (verification == null) {
             return res.status(500).json({

@@ -19,7 +19,7 @@ model User {
   address  String
   password String
   reviews  Reviews[]
-  role     role      @default(user)
+  role     role      @default(none)
   // rating   ProductRating[]
 }
 
