@@ -15,7 +15,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 phone: detail.phone,
                 email: detail.email,
                 address: detail.address,
-                password: detail.password,
                 role: detail.role
             }
         })

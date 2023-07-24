@@ -9,8 +9,8 @@ import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .put('/:id', permission('user'), updateUserOwnInfo)
     .get('/users', permission('admin'), allUser)
+    .put('/:id', permission('user'), updateUserOwnInfo)
     .put('/role/:id', permission('supervisor'), changeUserRole)
     .delete('/:id', permission('admin'), removeUser)
 
