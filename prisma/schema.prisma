@@ -11,16 +11,25 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  name     String
-  surname  String
-  phone    String[]
-  email    String
-  address  String
-  password String
-  reviews  Reviews[]
-  role     role      @default(none)
+  id         Int         @id @default(autoincrement())
+  name       String
+  surname    String
+  phone      String[]
+  email      String
+  address    String
+  password   String
+  reviews    Reviews[]
+  role       role        @default(none)
+  Supervisor Supervisor?
   // rating   ProductRating[]
+}
+
+model Supervisor {
+  id Int @id @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
+  name    String
+  surname String
 }
 
 model Verification {
@@ -78,7 +87,7 @@ model Details {
 // }
 
 enum role {
-  superAdmin
+  supervisor
   admin
   user
   none

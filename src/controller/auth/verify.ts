@@ -6,7 +6,7 @@ import VerificationService from '@service/verification.service';
 import { getTimeOut } from "@utils/generateCode";
 import { Payload } from '@model/payload.dto';
 import { sign } from '@service/jwt.service'
-import bcrypt from 'bcrypt'
+// import bcrypt from 'bcrypt'
 
 
 export default async (req: Request, res: Response, next: NextFunction) => {
@@ -45,8 +45,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const payload: Payload = {
             userId: user.id,
-            email: user.email,
-            address: user.address
+            // email: user.email,
+            // address: user.address
         }
 
         console.log(payload);

@@ -43,10 +43,10 @@ export default class AuthService {
         })
     }
 
-    static async findUserById(id: number) {
+    static async findUserById(userId: number) {
         return client.user.findUnique({
             where: {
-                id
+                id: userId
             }
         })
     }
@@ -73,13 +73,13 @@ export default class AuthService {
         });
     }
 
-    static async changeUserRole(id: number, newRole: role) {
+    static async changeUserRole(id: number, role: role) {
         return client.user.update({
             where: {
                 id
             },
             data: {
-                role: newRole
+                role
             }
         })
     }

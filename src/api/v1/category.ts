@@ -7,15 +7,15 @@ import allCategory from "@controller/Category/allCategory";
 import updateCategory from "@controller/Category/updateCategory";
 import removeCategory from "@controller/Category/remove.category";
 
-// import permission from "@middleware/permission";
+import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .post('/', upload.single('file'), createCategory)
-    .get('/:id', findCategory)
-    .get('/', allCategory)
-    .put('/:id', upload.single('file'), updateCategory)
-    .delete('/:id', removeCategory)
+    .post('/', permission('admin'), upload.single('file'), createCategory)
+    .get('/:id', permission('user'), findCategory)
+    .get('/', permission('user'), allCategory)
+    .put('/:id', permission('admin'), upload.single('file'), updateCategory)
+    .delete('/:id', permission('admin'), removeCategory)
 
 export default router
 

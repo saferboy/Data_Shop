@@ -35,8 +35,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const payload: Payload = {
             userId: user.id,
-            email: user.email,
-            address: user.address,
+            // email: user.email,
+            // address: user.address,
         };
 
         const token = await sign(payload);
