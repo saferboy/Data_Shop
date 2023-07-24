@@ -11,11 +11,11 @@ import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .post('/', permission('admin'), upload.single('file'), createCategory)
+    .post('/', permission('admin' || 'supervisor'), upload.single('file'), createCategory)
     .get('/:id', permission('user'), findCategory)
     .get('/', permission('user'), allCategory)
-    .put('/:id', permission('admin'), upload.single('file'), updateCategory)
-    .delete('/:id', permission('admin'), removeCategory)
+    .put('/:id', permission('admin' || 'supervisor'), upload.single('file'), updateCategory)
+    .delete('/:id', permission('admin' || 'supervisor'), removeCategory)
 
 export default router
 

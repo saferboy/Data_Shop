@@ -23,7 +23,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 phone: foundUser.phone,
                 email: foundUser.email,
                 address: foundUser.address,
-                password: foundUser.password,
                 role: foundUser.role
             }
         })

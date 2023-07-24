@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import AuthService from '@service/user.service';
-import { role } from '@prisma/client';
+// import { role } from '@prisma/client';
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
