@@ -20,17 +20,17 @@ model User {
   password   String
   reviews    Reviews[]
   role       role        @default(none)
-  Supervisor Supervisor?
+  // Supervisor Supervisor?
   // rating   ProductRating[]
 }
 
-model Supervisor {
-  id Int @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  @unique
-  name    String
-  surname String
-}
+// model Supervisor {
+//   id Int @id @default(autoincrement())
+//   user   User @relation(fields: [userId], references: [id])
+//   userId Int  @unique
+//   name    String
+//   surname String
+// }
 
 model Verification {
   id        String   @unique
