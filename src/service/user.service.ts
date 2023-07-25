@@ -35,6 +35,14 @@ export default class AuthService {
         return result.length !== 0
     }
 
+    static async findAdmins(role: role) {
+        return client.user.findMany({
+            where: {
+                role
+            }
+        })
+    }
+
     static async findUserByEmail(email: string) {
         return client.user.findFirst({
             where: {

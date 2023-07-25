@@ -50,7 +50,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 phone: user.phone,
                 email: user.email,
                 address: user.address,
-                // role: user.role 
+                role: user.role 
             },
             token: token,
         });
