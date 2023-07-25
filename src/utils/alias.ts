@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import {addAliases} from "module-alias"
 
 addAliases ({
@@ -7,5 +6,5 @@ addAliases ({
     '@model':      `${__dirname}/model`,
     '@service':    `${__dirname}/service`,
     '@config' :    `${__dirname}/config`,
-    '@utils' :     `${__dirname}/utils`
+    '@utils' :     `${__dirname}/utils`,
 })

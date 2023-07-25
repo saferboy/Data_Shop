@@ -1,3 +1,8 @@
 yangi problema!!
 
 saytga eng birinchi bo'lib kirgan foydalanuvchi saytning SUPERADMIN i bo'lishi kerak, keyingi kirgan foydalanuvchilar esa oddiy user, none role lari bilan saytga kiradi, faqatgina superadmin userlarning role larini change qilib bilishi kerak, user => admin, admin => user va hkz. buning uchun permission funksiyaga o'zgartirish kerak.!
+
+new problem
+required role = admin
+user: get /:id  zaprosida admin faqat userlarni ko'rib bilishi kerak, lekin hozir admin boshqa adminlarni ham ko'rib turibdi 
+adminlarni esa faqat supervisor ko'rib bilishi kerak.
