@@ -4,7 +4,7 @@ import { Router } from "express";
 import category from './category'
 import product from './product'
 import auth from './auth'
-import userInfo from './userInfo'
+import userInfo from './manage-user'
 
 const router = Router()
 
