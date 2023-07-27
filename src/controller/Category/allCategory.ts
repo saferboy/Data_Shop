@@ -9,8 +9,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         const mapped = allCtg.map(fined => {
             return  {
                 id: fined.id,
-                name: fined.name,
-                icon: fined.icon
             }
         })
 

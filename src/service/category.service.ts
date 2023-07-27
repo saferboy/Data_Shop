@@ -6,19 +6,19 @@ const client = new PrismaClient()
 
 export default class CategoryService {
 
-    static async createCategory(name: string, icon: string) {
+    static async createCategory(title: string, icon: string) {
         return client.category.create({
             data: {
-                name,
-                icon
+                title
+                // icon
             }
         })
     }
 
-    static async findCategoryByName(name: string) {
+    static async findCategoryByName(title: string) {
         return client.category.findFirst({
             where: {
-                name
+                title
             }
         })
     }
@@ -42,47 +42,47 @@ export default class CategoryService {
         })
     }
 
-    static async updateCategoryById(id: number, name: string, icon: string) {
-        const oldCategory = await client.category.findUnique({
-            where: { id }
-        })
-        if (oldCategory) {
-            fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
-                if (error) {
-                    console.log(error)
-                    return
-                }
-                // console.log("Category icon deleted");
-            })
-        }
+    // static async updateCategoryById(id: number, name: string, icon: string) {
+    //     const oldCategory = await client.category.findUnique({
+    //         where: { id }
+    //     })
+    //     if (oldCategory) {
+    //         fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
+    //             if (error) {
+    //                 console.log(error)
+    //                 return
+    //             }
+    //             // console.log("Category icon deleted");
+    //         })
+    //     }
 
-        return client.category.update({
-            where: {
-                id
-            },
-            data: {
-                name,
-                icon
-            }
-        })
-    }
+    //     return client.category.update({
+    //         where: {
+    //             id
+    //         },
+    //         data: {
+    //             name,
+    //             icon
+    //         }
+    //     })
+    // }
 
-    static async deleteCategory(id: number) {
-        const result = await client.category.delete({
-            where: {
-                id
-            },
-            include: {
-                product: true
-            }
-        })
-        fsregular.rm(path.join(__dirname, '../../upload', result.icon), (error) => {
-            if (error) {
-                console.log(error)
-                return
-            }
-            // console.log("Category icon deleted");
-        })
-        return result
-    }
+    // static async deleteCategory(id: number) {
+    //     const result = await client.category.delete({
+    //         where: {
+    //             id
+    //         },
+    //         include: {
+    //             product: true
+    //         }
+    //     })
+    //     fsregular.rm(path.join(__dirname, '../../upload', result.icon), (error) => {
+    //         if (error) {
+    //             console.log(error)
+    //             return
+    //         }
+    //         // console.log("Category icon deleted");
+    //     })
+    //     return result
+    // }
 }

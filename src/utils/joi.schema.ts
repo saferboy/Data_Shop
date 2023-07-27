@@ -1,6 +1,4 @@
-import { role } from '@prisma/client';
 import Joi from 'joi';
-import { join } from 'path';
 
 export class AuthSchemas {
     static register = Joi.object({
@@ -27,7 +25,7 @@ export class AuthSchemas {
     });
 }
 
-export class Manageuser {
+export class ManageUser {
     static finduser = Joi.object({
         id: Joi.number().min(1).required()
     })
