@@ -22,6 +22,7 @@ model User {
   favorite Favorite[]
   order    Order[]
   role     role       @default(none)
+  basket   Basket?
 }
 
 model Verification {
@@ -49,23 +50,25 @@ model Brand {
 }
 
 model Product {
-  id          Int         @id @default(autoincrement())
-  title       String
-  description String
-  incomePrice String
-  sellPrice   String
-  discount    String
+  id           Int         @id @default(autoincrement())
+  title        String
+  description  String
+  incomePrice  String
+  sellPrice    String
+  discount     String
   // type        String
-  count       Int
-  image       File[]
-  rating      Int
-  category    Category    @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  Brand       Brand?      @relation(fields: [brandId], references: [id])
-  brandId     Int?
-  comment     Comments[]
-  favorite    Favorite[]
-  oderItem    OrderItem[]
+  count        Int
+  image        File[]
+  rating       Int
+  category     Category    @relation(fields: [categoryId], references: [id])
+  categoryId   Int
+  Brand        Brand?      @relation(fields: [brandId], references: [id])
+  brandId      Int?
+  comment      Comments[]
+  favorite     Favorite[]
+  oderItem     OrderItem[]
+  BasketItem   BasketItem? @relation(fields: [basketItemId], references: [id])
+  basketItemId Int?
 }
 
 model Comments {
@@ -79,15 +82,18 @@ model Comments {
 }
 
 model Basket {
-  id     Int @id @default(autoincrement())
-  // userId
+  id         Int          @id @default(autoincrement())
+  User       User         @relation(fields: [id], references: [id])
+  userId     Int          @unique
+  basketItem BasketItem[]
 }
 
 model BasketItem {
-  id        Int @id @default(autoincrement())
-  // basketId
-  // productid
-  count     Int
+  id       Int       @id @default(autoincrement())
+  basket   Basket    @relation(fields: [basketId], references: [id])
+  basketId Int
+  product  Product[]
+  count    Int
 }
 
 model Favorite {

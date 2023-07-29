@@ -46,5 +46,17 @@ export class ManageUser {
 
     static deleteUser = Joi.object({
         id: Joi.number().min(1).required()
-    })    
+    })
+}
+
+export class CategorySchema {
+
+    static CreateCtg = Joi.object({
+        title: Joi.string().min(1).required()
+    })
+
+    static findCtg = Joi.object({
+        id: Joi.number().min(1).required()
+    })
+
 }

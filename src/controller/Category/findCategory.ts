@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import CategoryService from "@service/category.service";
+import { deflate } from "node:zlib";
 
 
 export default async (req: Request, res: Response, next: NextFunction) => {
@@ -20,15 +21,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             message: `Retrive category by id: ${id}`,
             category: {
                 id: find.id,
-                name: find.name,
-                icon: find.icon,
-                product: find.product.map((detail) => ({
-                    id: detail.id,
-                    name: detail.name,
-                    price: detail.price,
-                    image: detail.image,
-                    description: detail.description
-                }))
+                title: find.title,
+                icon: find.icon
             }
         })
 

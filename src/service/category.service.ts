@@ -6,11 +6,10 @@ const client = new PrismaClient()
 
 export default class CategoryService {
 
-    static async createCategory(title: string, icon: string) {
+    static async createCategory(title: string) {
         return client.category.create({
             data: {
                 title
-                // icon
             }
         })
     }
@@ -29,6 +28,8 @@ export default class CategoryService {
                 id
             },
             include: {
+                brand: true,
+                icon: true,
                 product: true
             }
         })
@@ -37,22 +38,25 @@ export default class CategoryService {
     static async findAllCategory() {
         return client.category.findMany({
             include: {
-                product: true
+                icon: true,
+                product: true,
+                brand: true
             }
         })
     }
 
-    // static async updateCategoryById(id: number, name: string, icon: string) {
+    // static async updateCategoryById(id: number, title: string, icon: string) {
     //     const oldCategory = await client.category.findUnique({
     //         where: { id }
     //     })
+
     //     if (oldCategory) {
     //         fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
     //             if (error) {
     //                 console.log(error)
     //                 return
     //             }
-    //             // console.log("Category icon deleted");
+    //             console.log("Old category icon deleted");
     //         })
     //     }
 
@@ -61,8 +65,7 @@ export default class CategoryService {
     //             id
     //         },
     //         data: {
-    //             name,
-    //             icon
+    //             title
     //         }
     //     })
     // }

@@ -4,34 +4,26 @@ import CategoryService from "@service/category.service";
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const name = req.body.name
+        const title: string = req.body.title
 
-        const oldCategory = await CategoryService.findCategoryByName(name)
+        const oldCategory = await CategoryService.findCategoryByName(title)
 
         if (oldCategory) {
             return res.status(404).json({
-                message: `Category with ${name} has alredy been created`
+                message: `Category with ${title} has alredy been created`
+            })
+        } else {
+
+            const newCtg = await CategoryService.createCategory(title)
+
+            return res.status(201).json({
+                message: 'Categroy created',
+                category: {
+                    id: newCtg.id,
+                    title: newCtg.title,
+                }
             })
         }
-
-        if (!req.file) {
-            return res.status(400).json({
-                message: "File not upload"
-            })
-        }
-
-        const icon = req.file.filename
-
-        const newCtg = await CategoryService.createCategory(name, icon)
-
-        return res.status(201).json({
-            message: 'Categroy created',
-            category: {
-                id: newCtg.id,
-                name: newCtg.name,
-                icon: newCtg.icon
-            }
-        })
 
     } catch (error) {
         next(error)
