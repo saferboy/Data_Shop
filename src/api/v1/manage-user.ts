@@ -2,12 +2,12 @@ import { Router } from "express";
 
 import { createValidator } from "express-joi-validation"
 
-import updateUserOwnInfo from "@controller/User/updateUserOwnInfo";
-import allUser from "@controller/User/allUser";
-import changeUserRole from "@controller/User/updateUserRole";
-import removeUser from "@controller/User/removeUser";
-import findUserById from "@controller/User/findUserById";
-import allAdmins from "@controller/User/allAdmins";
+import updateUserOwnInfo from "@controller/user/update-user-own-info";
+import allUser from "@controller/user/all-user";
+import changeUserRole from "@controller/user/update-user-role";
+import removeUser from "@controller/user/remove-user";
+import findUserById from "@controller/user/find-user-by-id";
+import allAdmins from "@controller/user/all-admins";
 
 import { ManageUser } from "@utils/joi.schema";
 const validator = createValidator()

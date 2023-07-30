@@ -35,7 +35,7 @@ model Verification {
 model Category {
   id      Int       @id @default(autoincrement())
   title   String    @unique
-  icon    File[]
+  icon    File?
   product Product[]
   brand   Brand[]
 }
@@ -43,7 +43,7 @@ model Category {
 model Brand {
   id         Int       @id @default(autoincrement())
   title      String    @unique
-  logo       File[]
+  logo       File?
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
   product    Product[]
@@ -105,15 +105,15 @@ model Favorite {
 }
 
 model File {
-  id         BigInt    @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   path       String
   filename   String
-  Product    Product?  @relation(fields: [productId], references: [id])
+  product    Product?  @relation(fields: [productId], references: [id])
   productId  Int?
-  Category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?
-  Brand      Brand?    @relation(fields: [brandId], references: [id])
-  brandId    Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?      @unique
+  brand      Brand?    @relation(fields: [brandId], references: [id])
+  brandId    Int?      @unique
 }
 
 model Order {

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import createCategory from "@controller/Category/create-category";
-import findCategory from "@controller/Category/findCategory";
-import allCategory from "@controller/Category/allCategory";
+import createCategory from "@controller/category/create-category";
+import findCategory from "@controller/category/find-category";
+import allCategory from "@controller/category/all-category";
 // import updateCategory from "@controller/Category/updateCategory";
 // import removeCategory from "@controller/Category/remove.category";
 import { CategorySchema } from "@utils/joi.schema";
@@ -17,7 +17,7 @@ import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .post('/', permission([role.admin, role.supervisor]), validator.body(CategorySchema.CreateCtg), createCategory)
+    .post('/', permission(['admin', 'supervisor']), validator.body(CategorySchema.CreateCtg), createCategory)
     .get('/:id', permission(['none', 'user', 'admin', 'supervisor']), validator.params(CategorySchema.findCtg), findCategory)
     .get('/', permission(['none', 'user', 'admin', 'supervisor']), allCategory)
 // .put('/:id', permission('admin' || 'supervisor'), upload.single('file'), updateCategory)

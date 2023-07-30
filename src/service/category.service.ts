@@ -6,10 +6,15 @@ const client = new PrismaClient()
 
 export default class CategoryService {
 
-    static async createCategory(title: string) {
+    static async createCategory(title: string, iconId: number) {
         return client.category.create({
             data: {
-                title
+                title,
+                icon: {
+                    connect: {
+                        id: iconId
+                    }
+                }
             }
         })
     }

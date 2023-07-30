@@ -12,10 +12,72 @@ saytga eng birinchi bo'lib kirgan foydalanuvchi saytning SUPERADMIN i bo'lishi k
 # refresh token qo'shish kerak
 
 
-supervisor: "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MDUyNTIzMSwiZXhwIjoxNzAxMzI1MjMxfQ.nJTih3KKIUGoIhGIDxasChJrGZxcZNpYyU8WuQ454gI"
-
-user : "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDUyNTM4MSwiZXhwIjoxNzAxMzI1MzgxfQ.kOyC6mpnTyLPTpbmFtHLno35JC-CyHebzS_2BX--SeI"
-
-
-
 !! endpontlarni, response larni planlashtirish kerak
+
+
+
+#  // phones.png, "Phones"
+
+#         // POST /upload
+#         // files: [phones.png]
+#         // <- [
+#         //    {id: 1, path: "asdjoaid1.1232", filename: "phones.png"}
+#         // ]
+
+#         //      POST /category
+#         /*      {
+#                     "title": "Phones",
+#                     "icon": 1
+#                 }
+#                 */
+
+
+
+
+
+
+
+
+# // static async updateCategoryById(id: number, title: string, icon: string) {
+#     //     const oldCategory = await client.category.findUnique({
+#     //         where: { id }
+#     //     })
+
+#     //     if (oldCategory) {
+#     //         fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
+#     //             if (error) {
+#     //                 console.log(error)
+#     //                 return
+#     //             }
+#     //             console.log("Old category icon deleted");
+#     //         })
+#     //     }
+
+#     //     return client.category.update({
+#     //         where: {
+#     //             id
+#     //         },
+#     //         data: {
+#     //             title
+#     //         }
+#     //     })
+#     // }
+
+#     // static async deleteCategory(id: number) {
+#     //     const result = await client.category.delete({
+#     //         where: {
+#     //             id
+#     //         },
+#     //         include: {
+#     //             product: true
+#     //         }
+#     //     })
+#     //     fsregular.rm(path.join(__dirname, '../../upload', result.icon), (error) => {
+#     //         if (error) {
+#     //             console.log(error)
+#     //             return
+#     //         }
+#     //         // console.log("Category icon deleted");
+#     //     })
+#     //     return result
+#     // }

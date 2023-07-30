@@ -4,7 +4,7 @@ import { createValidator } from "express-joi-validation"
 import register from "@controller/auth/register";
 import verify from "@controller/auth/verify";
 import login from "@controller/auth/login";
-import resendCode from "@controller/auth/resendCode";
+import resendCode from "@controller/auth/resend-code";
 
 import { AuthSchemas } from "@utils/joi.schema";
 

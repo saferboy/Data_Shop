@@ -52,7 +52,8 @@ export class ManageUser {
 export class CategorySchema {
 
     static CreateCtg = Joi.object({
-        title: Joi.string().min(1).required()
+        title: Joi.string().min(1).required(),
+        iconId: Joi.number().min(1).required()
     })
 
     static findCtg = Joi.object({

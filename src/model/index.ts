@@ -1,4 +1,4 @@
-export * from './Characteristic.dto'
+export * from './characteristic.dto'
 export * from './category.dto'
 export * from './product.dto'
 export * from './payload.dto'
