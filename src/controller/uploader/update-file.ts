@@ -5,7 +5,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const files = req.files
-        const iconId = +req.params.iconId
+        const iconId = +req.params.id
 
         if (!files) {
             return res.status(400).json({

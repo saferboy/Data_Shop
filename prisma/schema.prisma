@@ -35,7 +35,7 @@ model Verification {
 model Category {
   id      Int       @id @default(autoincrement())
   title   String    @unique
-  icon    File?
+  file    File?
   product Product[]
   brand   Brand[]
 }

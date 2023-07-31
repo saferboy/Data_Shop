@@ -23,6 +23,15 @@ export default class CategoryService {
         return client.category.findFirst({
             where: {
                 title
+            },
+            select: {
+                title: true, 
+                id: true,
+                icon: {
+                    select: {
+                        id: true
+                    }
+                }
             }
         })
     }
