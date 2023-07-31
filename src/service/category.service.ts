@@ -58,27 +58,29 @@ export default class CategoryService {
         })
     }
 
-    static async updateCategoryById(id: number, title: string, icon: string) {
-        const oldCategory = await client.category.findUnique({
-            where: { id }
-        })
-
-        if (oldCategory) {
-            fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
-                if (error) {
-                    console.log(error)
-                    return
-                }
-                console.log("Old category icon deleted");
-            })
-        }
-
+    static async updateCategoryById(id: number, title: string, iconId: number) {
         return client.category.update({
             where: {
                 id
             },
             data: {
-                title
+                title,
+                icon: {
+                    connect: {
+                        id: iconId
+                    }
+                }
+            },
+            select: {
+                id: true,
+                title: true,
+                icon: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
             }
         })
     }
