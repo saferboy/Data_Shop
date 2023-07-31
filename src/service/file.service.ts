@@ -13,7 +13,7 @@ export default class FileService {
     static async createFile(dtos: CreatDto[]) {
 
         const files: {
-            id: bigint,
+            id: number,
             path: string,
             filename: string
         }[] = []

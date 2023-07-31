@@ -33,9 +33,13 @@ export default class CategoryService {
                 id
             },
             include: {
-                brand: true,
-                icon: true,
-                product: true
+                icon: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
             }
         })
     }
@@ -43,37 +47,41 @@ export default class CategoryService {
     static async findAllCategory() {
         return client.category.findMany({
             include: {
-                icon: true,
-                product: true,
-                brand: true
+                icon: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
             }
         })
     }
 
-    // static async updateCategoryById(id: number, title: string, icon: string) {
-    //     const oldCategory = await client.category.findUnique({
-    //         where: { id }
-    //     })
+    static async updateCategoryById(id: number, title: string, icon: string) {
+        const oldCategory = await client.category.findUnique({
+            where: { id }
+        })
 
-    //     if (oldCategory) {
-    //         fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
-    //             if (error) {
-    //                 console.log(error)
-    //                 return
-    //             }
-    //             console.log("Old category icon deleted");
-    //         })
-    //     }
+        if (oldCategory) {
+            fsregular.rm(path.join(__dirname, '../../upload', oldCategory.icon), (error) => {
+                if (error) {
+                    console.log(error)
+                    return
+                }
+                console.log("Old category icon deleted");
+            })
+        }
 
-    //     return client.category.update({
-    //         where: {
-    //             id
-    //         },
-    //         data: {
-    //             title
-    //         }
-    //     })
-    // }
+        return client.category.update({
+            where: {
+                id
+            },
+            data: {
+                title
+            }
+        })
+    }
 
     // static async deleteCategory(id: number) {
     //     const result = await client.category.delete({

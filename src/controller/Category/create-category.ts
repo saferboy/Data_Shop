@@ -16,7 +16,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 message: `Category with ${title} has alredy been created`
             })
         }
-        if (!foundIcon) {
+        else if (!foundIcon) {
             return res.status(400).json({
                 message: 'File not found'
             });

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import CategoryService from "@service/category.service";
-import { deflate } from "node:zlib";
+// import { deflate } from "node:zlib";
 
 
 export default async (req: Request, res: Response, next: NextFunction) => {
