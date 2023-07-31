@@ -11,7 +11,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         if (!oldCtg) {
             return res.status(404).json({
-                message: `Category not found by id: ${id} or alredy deleted`
+                message: 'Category not found or alredy deleted'
             })
         }
 
@@ -21,7 +21,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             message: `Category deleted by id: ${id}`,
             category: {
                 id: removedCtg.id,
-                name: removedCtg.name,
+                title: removedCtg.title,
                 icon: removedCtg.icon
             }
         })

@@ -25,7 +25,7 @@ export default class CategoryService {
                 title
             },
             select: {
-                title: true, 
+                title: true,
                 id: true,
                 icon: {
                     select: {
@@ -94,22 +94,22 @@ export default class CategoryService {
         })
     }
 
-    // static async deleteCategory(id: number) {
-    //     const result = await client.category.delete({
-    //         where: {
-    //             id
-    //         },
-    //         include: {
-    //             product: true
-    //         }
-    //     })
-    //     fsregular.rm(path.join(__dirname, '../../upload', result.icon), (error) => {
-    //         if (error) {
-    //             console.log(error)
-    //             return
-    //         }
-    //         // console.log("Category icon deleted");
-    //     })
-    //     return result
-    // }
+    static async deleteCategory(id: number) {
+        return client.category.delete({
+            where: {
+                id
+            },
+            select: {
+                id: true,
+                title: true,
+                icon: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
+            }
+        })
+    }
 }

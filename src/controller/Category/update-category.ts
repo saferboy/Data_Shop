@@ -5,17 +5,17 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const id = +req.params.id
-        const name = req.body.name
-
-        if (!req.file) {
-            return res.status(404).json({
-                message: 'File not upload'
-            })
-        }
-
-        const icon = req.file.filename
+        const title = req.body.title
+        const iconId: number = +req.body.iconId
 
         const oldCtg = await CategoryService.findCategoryById(id)
+
+
+        if (oldCtg && oldCtg.title === title || oldCtg?.icon?.id === iconId) {
+            return res.status(200).json({
+                message: 'Siz hech qanday o\'zgarish kiritmadingiz'
+            });
+        }
 
         if (!oldCtg) {
             return res.status(404).json({
@@ -23,16 +23,26 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             })
         }
 
-        const newCtg = await CategoryService.updateCategoryById(id, name, icon)
+        let updated = false;
 
-        if (name === oldCtg.name) {
-            res.setHeader('Content-type', 'application/json');
-            return res.status(304).send(JSON.stringify({
-                message: 'You have not made any changes'
-            }))
+        if (oldCtg.title !== title) {
+            updated = true;
         }
 
-        if (oldCtg.name == newCtg.name) {
+        if (oldCtg.icon?.id !== iconId) {
+            updated = true;
+        }
+
+        if (!updated) {
+            return res.status(200).json({
+                message: "Siz hech qanday o'zgarish kiritmadingiz",
+            });
+        }
+
+        const newCtg = await CategoryService.updateCategoryById(id, title, iconId)
+
+
+        if (oldCtg.title == newCtg.title) {
             return res.status(200).json({
                 message: 'Siz hech qanday o\'zgarish kiritmadingiz'
             });
@@ -43,8 +53,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             message: 'Category updated',
             category: {
                 id: newCtg.id,
-                name: newCtg.name,
-                icon: newCtg.icon
+                title: newCtg.title,
+                icon: newCtg.icon?.id
             }
         })
 

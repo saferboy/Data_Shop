@@ -109,11 +109,18 @@ export default class FileService {
     }
 
     static async deleteFile(iconId: number) {
-        return client.file.delete({
+        const result = await client.file.delete({
             where: {
                 id: iconId
             }
         })
-    }
+        fsregular.rm(path.join(__dirname, '../../upload', result.path), (error) => {
+            if (error) {
+                console.log(error)
+                return
+            }
+        })
+        return result
 
+    }
 } 
