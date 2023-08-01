@@ -18,30 +18,39 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         }
 
         if (oldCtg.icon) {
-            await FileService.deleteFile(oldCtg.id)
+            await FileService.deleteFile(oldCtg.icon.id)
         }
 
-        if (oldCtg.icon?.id == iconId) {
-            return res.status(304).json({
-                message: 'esd'
-            });
-        }
-
+        
         const newCtg = await CategoryService.updateCategoryById(id, oldCtg.title == title ? undefined : title, iconId)
-
-        if (oldCtg.title == newCtg.title) {
+        
+        if (oldCtg.icon?.id == newCtg.icon?.id) {
             return res.status(200).json({
-                message: 'Siz hech qanday o\'zgarish kiritmadingiz'
+                message: 'File not change'
             });
         }
+        // if (oldCtg.title == newCtg.title) {
+            //     return res.status(200).json({
+        //         message: 'Siz hech qanday o\'zgarish kiritmadingiz'
+        //     });
+        // }
 
+        if (!newCtg.icon?.id) {
+            return res.status(400).json({
+                message: 'File not found'
+            })
+        }
 
         return res.status(201).json({
             message: 'Category updated',
             category: {
                 id: newCtg.id,
                 title: newCtg.title,
-                icon: newCtg.icon?.id
+                icon: {
+                    id: newCtg.icon?.id,
+                    path: newCtg.icon?.path,
+                    filename: newCtg.icon?.filename
+                }
             }
         })
 
