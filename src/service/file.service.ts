@@ -109,6 +109,17 @@ export default class FileService {
     }
 
     static async deleteFile(iconId: number) {
+
+        const fileToDelete = await client.file.findUnique({
+            where: {
+                id: iconId
+            }
+        })
+
+        if (!fileToDelete) {
+            throw new Error('File not found');
+        }
+
         const result = await client.file.delete({
             where: {
                 id: iconId
