@@ -1,4 +1,4 @@
-import { Request, response, NextFunction, Response } from "express";
+import { Request, NextFunction, Response } from "express";
 import CategoryService from "@service/category.service";
 
 export default async (req: Request, res: Response, next: NextFunction) => {
