@@ -15,6 +15,17 @@ export default class CategoryService {
                         id: iconId
                     }
                 }
+            },
+            select: {
+                id: true,
+                title: true,
+                icon: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
             }
         })
     }
