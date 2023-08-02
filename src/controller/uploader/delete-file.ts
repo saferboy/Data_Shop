@@ -18,9 +18,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         return res.status(200).json({
             message: 'File removed',
-            id: removed.id,
-            path: removed.path,
-            filename: removed.filename
+            icon: {
+                id: removed.id,
+                path: removed.path,
+                filename: removed.filename
+            }
         })
 
     } catch (err) {

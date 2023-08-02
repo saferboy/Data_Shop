@@ -12,10 +12,9 @@ import { permission } from "@middleware/permission";
 const router = Router()
 
     .post('/', upload.array('files'), uploadFiles)
-    .get('/', permission(['admin', 'supervisor']), allFile)
+    .get('/files', permission(['admin', 'supervisor']), allFile)
     .get('/:id', permission(['admin', 'supervisor']), findFile)
     .put('/:id', permission(['admin', 'supervisor']), upload.array('files'), updateFile)
     .delete('/:id', deleteFile)
-
 
 export default router

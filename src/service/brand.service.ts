@@ -2,22 +2,28 @@ import { PrismaClient } from "@prisma/client";
 
 const client = new PrismaClient()
 
-export default class CategoryService {
+export default class BrandService {
 
-    static async createCategory(title: string, iconId: number) {
-        return client.category.create({
+    static async createBrand(title: string, logoId: number, categoryId: number) {
+        return client.brand.create({
             data: {
                 title,
-                icon: {
+                categoryId,
+                logo: {
                     connect: {
-                        id: iconId
+                        id: logoId
                     }
                 }
-            },
+            }
+        })
+    }
+
+    static async allBrands() {
+        return client.brand.findMany({
             select: {
                 id: true,
                 title: true,
-                icon: {
+                logo: {
                     select: {
                         id: true,
                         path: true,
@@ -28,30 +34,34 @@ export default class CategoryService {
         })
     }
 
-    static async findCategoryByName(title: string) {
-        return client.category.findFirst({
+    static async findBrandById(brandId: number) {
+        return client.brand.findUnique({
+            where: {
+                id: brandId
+            },
+            select: {
+                id: true,
+                title: true,
+                logo: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
+            }
+        })
+    }
+
+    static async findBrandByName(title: string) {
+        return client.brand.findUnique({
             where: {
                 title
             },
             select: {
-                title: true,
                 id: true,
-                icon: {
-                    select: {
-                        id: true
-                    }
-                }
-            }
-        })
-    }
-
-    static async findCategoryById(id: number) {
-        return client.category.findUnique({
-            where: {
-                id
-            },
-            include: {
-                icon: {
+                title: true,
+                logo: {
                     select: {
                         id: true,
                         path: true,
@@ -62,37 +72,23 @@ export default class CategoryService {
         })
     }
 
-    static async findAllCategory() {
-        return client.category.findMany({
-            include: {
-                icon: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
-            }
-        })
-    }
-
-    static async updateCategoryById(id: number, title: string, iconId: number) {
-        return client.category.update({
+    static async updateBrandById(id: number, title: string, logoId: number) {
+        return client.brand.update({
             where: {
                 id
             },
             data: {
                 title,
-                icon: {
+                logo: {
                     connect: {
-                        id: iconId
+                        id: logoId
                     }
                 }
             },
             select: {
                 id: true,
                 title: true,
-                icon: {
+                logo: {
                     select: {
                         id: true,
                         path: true,
@@ -103,15 +99,15 @@ export default class CategoryService {
         })
     }
 
-    static async deleteCategory(id: number) {
-        return client.category.delete({
+    static async deleteBrand(id: number) {
+        return client.brand.delete({
             where: {
                 id
             },
             select: {
                 id: true,
                 title: true,
-                icon: {
+                logo: {
                     select: {
                         id: true,
                         path: true,
@@ -121,4 +117,5 @@ export default class CategoryService {
             }
         })
     }
+
 }
