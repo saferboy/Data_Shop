@@ -13,6 +13,17 @@ export default class BrandService {
                     connect: {
                         id: logoId
                     }
+                },
+            },
+            select: {
+                id: true,
+                title: true,
+                logo: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
                 }
             }
         })

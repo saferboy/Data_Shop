@@ -61,3 +61,10 @@ export class CategorySchema {
     })
 
 }
+
+export class BrandChema {
+    static CreateBrand = Joi.object({
+        title: Joi.string().min(1).required(),
+        logoId: Joi.number().min(1).required()
+    })
+}

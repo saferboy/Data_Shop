@@ -5,8 +5,8 @@
     ]
   },
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "out",
+    "rootDir": "./src",
+    "outDir": "./out",
     "baseUrl": "./src",
     "paths": {
       "*": [
@@ -35,8 +35,6 @@
       ]
     },
     "sourceMap": true,
-    // "outDir": "dist",
-    "strict": true,
     "lib": [
       "esnext"
     ],
