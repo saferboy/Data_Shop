@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { title } from 'node:process';
 
 export class AuthSchemas {
     static register = Joi.object({
@@ -67,4 +68,5 @@ export class BrandChema {
         title: Joi.string().min(1).required(),
         logoId: Joi.number().min(1).required()
     })
+
 }
