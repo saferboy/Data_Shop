@@ -23,7 +23,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             await FileService.deleteFile(removedCtg.icon.id)
         }
 
-        return res.status(201).json({
+        return res.status(200).json({
             message: `Category deleted by id: ${id}`,
             category: {
                 id: removedCtg.id,

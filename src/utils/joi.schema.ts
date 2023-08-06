@@ -69,4 +69,8 @@ export class BrandChema {
         logoId: Joi.number().min(1).required()
     })
 
+    static BrandParam = Joi.object({
+        id: Joi.number().min(1).required()
+    }) 
+
 }
