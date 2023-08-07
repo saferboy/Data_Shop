@@ -17,8 +17,8 @@ import { permission } from "@middleware/permission";
 const router = Router()
 
     .post('/', permission(['admin', 'supervisor']), validator.body(CategorySchema.CreateCtg), createCategory)
-    .get('/:id', permission(['none', 'user', 'admin', 'supervisor']), validator.params(CategorySchema.findCtg), findCategory)
-    .get('/', permission(['none', 'user', 'admin', 'supervisor']), allCategory)
+    .get('/:id', validator.params(CategorySchema.findCtg), findCategory)
+    .get('/', allCategory)
     .put('/:id', permission(['admin', 'supervisor']), updateCategory)
     .delete('/:id', permission(['admin', 'supervisor']), removeCategory)
 

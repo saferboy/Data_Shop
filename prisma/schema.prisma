@@ -34,7 +34,7 @@ model Verification {
 
 model Category {
   id      Int       @id @default(autoincrement())
-  title   String    @unique
+  title   String    
   icon    File?
   product Product[]
   brand   Brand[]
@@ -42,7 +42,7 @@ model Category {
 
 model Brand {
   id         Int       @id @default(autoincrement())
-  title      String    @unique
+  title      String    
   logo       File?
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?

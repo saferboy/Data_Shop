@@ -1,0 +1,963 @@
+{
+	"info": {
+		"_postman_id": "8d478ee0-cf10-40b6-a760-afa3f169e144",
+		"name": "DATA_SHOP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21184193",
+		"_collection_link": "https://winter-satellite-710317.postman.co/workspace/Saferboy-Workspace~3ff168db-d167-48c5-84a3-9c96261503b5/collection/21184193-8d478ee0-cf10-40b6-a760-afa3f169e144?action=share&creator=21184193&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "CATEGORY",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDU3MTU3NiwiZXhwIjoxNzAxMzcxNTc2fQ.qVpY1HnzotjcaXZfgdDedWdWkrsunF5AWgX66zvJCMg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"telefonlar1\",\r\n    \"iconId\": 22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/category",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Category By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDYwNjY3OCwiZXhwIjoxNzAxNDA2Njc4fQ.nZ-oCA-cZPxufM7WTHbyM7r_jBHFqrhvq2I14pVzidE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/category/5",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDYwNjY3OCwiZXhwIjoxNzAxNDA2Njc4fQ.nZ-oCA-cZPxufM7WTHbyM7r_jBHFqrhvq2I14pVzidE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/category",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MDc4NDkxNCwiZXhwIjoxNzAxNTg0OTE0fQ.AxDII10X57hTO0JJCUkRHXSHCHgr9Mv4Ph6pu5mm118",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"nauwnik2\",\r\n    \"iconId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/category/11",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MDc4NDkxNCwiZXhwIjoxNzAxNTg0OTE0fQ.AxDII10X57hTO0JJCUkRHXSHCHgr9Mv4Ph6pu5mm118",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/category/16",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCT",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "AUS",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "700$",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/WALPAPER/batman-is-watching-beautiful-sunset-wallpaper-2560x1080_14.jpg"
+								},
+								{
+									"key": "description",
+									"value": "Noutbuk HP modeilda igravoy",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/product/20",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9060/api/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9060/api/v1/product/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Mac Book",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1500$",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/WALPAPER/batman-is-watching-beautiful-sunset-wallpaper-2560x1080_14.jpg"
+								},
+								{
+									"key": "description",
+									"value": "Apple for eplaganlar",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/product/7",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleted Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9060/api/v1/product/7",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"root\",\r\n    \"surname\": \"root\",\r\n    \"phone\": \"root\",\r\n    \"email\": \"root@gmail.com\",\r\n    \"address\": \"root\",\r\n    \"password\": \"root\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"root@gmail.com\",\r\n    \"password\": \"root\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"verificationId\": \"9b4d5087-34ea-4ae5-86a3-382c7afe0601\",\r\n    \"code\": \"362141\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/auth/verify",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"7@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/auth/resend",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MANAGE USER",
+			"item": [
+				{
+					"name": "Update User Own Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE2OTAyNzc5MTEsImV4cCI6MTcwMTA3NzkxMX0.2hF78hgSY4IQg27fnA20KPfmd21RfOPzEgzULQgXsXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"harry\",\r\n    \"surname\": \"Amirbek\",\r\n    \"phone\": \"123445566\",\r\n    \"email\": \"amir@gmail.com\",\r\n    \"address\": \"Xiva\",\r\n    \"password\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/user/15",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDUzNTcwNCwiZXhwIjoxNzAxMzM1NzA0fQ.x4Q5e21mMfQAUUSoJSTvcCVf23Vvo4iuUJxl8826iag",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/user/users",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change User's Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MDUyNTUwNiwiZXhwIjoxNzAxMzI1NTA2fQ.Sp9hsJ5qSLUS_2IkQAYM1vYanM2nNXuwoEKZP984a2Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/user/role/3",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"role",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2OTAyNzg1NDksImV4cCI6MTcwMTA3ODU0OX0.UBFPJdVn15QxlCtuCiys5OHHrZkUHFfUd1mu5xOFVoE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/user/2",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find User By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiM0BnbWFpbC5jb20iLCJhZGRyZXNzIjoiWG9yYXptIiwiaWF0IjoxNjkwMTc0OTkzLCJleHAiOjE3MDA5NzQ5OTN9.H-nilN-IZw9-OXuV1H9x5cMbUKI-CyMPxSpZgtZz4nk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/user/15",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Admins",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2OTAyNjE5ODgsImV4cCI6MTcwMTA2MTk4OH0.C1G_Y8Xfe_XAppPstzG77i7j7ljm6GEGv92zWO4Tt9M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/user/admins?role=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"admins"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/D:/WALPAPER/batman-is-watching-beautiful-sunset-wallpaper-2560x1080_14 — копия.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDU3MTU3NiwiZXhwIjoxNzAxMzcxNTc2fQ.qVpY1HnzotjcaXZfgdDedWdWkrsunF5AWgX66zvJCMg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/upload/files",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"upload",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find File By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDU3MTU3NiwiZXhwIjoxNzAxMzcxNTc2fQ.qVpY1HnzotjcaXZfgdDedWdWkrsunF5AWgX66zvJCMg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/upload/13",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"upload",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update File",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY5MDU3MTU3NiwiZXhwIjoxNzAxMzcxNTc2fQ.qVpY1HnzotjcaXZfgdDedWdWkrsunF5AWgX66zvJCMg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/D:/WALPAPER/batman-is-watching-beautiful-sunset-wallpaper-2560x1080_14.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/upload/12",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"upload",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete File",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9060/api/v1/upload/11",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"upload",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BRAND",
+			"item": [
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTE3Mjk2NSwiZXhwIjoxNzAxOTcyOTY1fQ.J8mVynY_wXgIjGA5VXpsHBZ-Y1JO0JG_1TJ92_8EwQg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Xiaomi\",\r\n    \"logoId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/brand/11",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"brand",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Brands",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTE3Mjk2NSwiZXhwIjoxNzAxOTcyOTY1fQ.J8mVynY_wXgIjGA5VXpsHBZ-Y1JO0JG_1TJ92_8EwQg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/brand/",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"brand",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Brand By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTE3Mjk2NSwiZXhwIjoxNzAxOTcyOTY1fQ.J8mVynY_wXgIjGA5VXpsHBZ-Y1JO0JG_1TJ92_8EwQg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/brand/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"brand",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Brand",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTE3Mjk2NSwiZXhwIjoxNzAxOTcyOTY1fQ.J8mVynY_wXgIjGA5VXpsHBZ-Y1JO0JG_1TJ92_8EwQg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hyper\",\r\n    \"logoId\": 35\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9060/api/v1/brand/3",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"brand",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Brand",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MTE3Mjk2NSwiZXhwIjoxNzAxOTcyOTY1fQ.J8mVynY_wXgIjGA5VXpsHBZ-Y1JO0JG_1TJ92_8EwQg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9060/api/v1/brand/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9060",
+							"path": [
+								"api",
+								"v1",
+								"brand",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": []
+		}
+	]
+}

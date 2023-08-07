@@ -15,9 +15,9 @@ import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .post('/:id', permission(['admin', 'supervisor']), validator.body(BrandChema.CreateBrand), createBrand)
-    .get('/', permission(['admin', 'supervisor']), allBrands)
-    .get('/:id', permission(['admin', 'supervisor']), findBrand)
+    .post('/', permission(['admin', 'supervisor']), validator.body(BrandChema.CreateBrand), createBrand)
+    .get('/', allBrands)
+    .get('/:id',findBrand)
     .put('/:id', permission(['admin', 'supervisor']), validator.params(BrandChema.BrandParam), validator.body(BrandChema.CreateBrand), updateBrand)
     .delete('/:id', permission(['admin', 'supervisor']), validator.params(BrandChema.BrandParam), removeBrand)
 

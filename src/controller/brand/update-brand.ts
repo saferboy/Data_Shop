@@ -26,8 +26,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        if (foundBrand.logo) {
-            await FileService.deleteFile(foundBrand.logo.id)
+        const oldTitle = await BrandService.findBrandByName(title)
+
+        if (oldTitle) {
+            return res.status(200).json({
+                message: `Brand has already been created with the name: ${oldTitle.title}`
+            });
         }
 
         const newBrand = await BrandService.updateBrandById(brandId, title, logoId)

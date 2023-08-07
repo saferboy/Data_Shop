@@ -37,6 +37,7 @@ saytga eng birinchi bo'lib kirgan foydalanuvchi saytning SUPERADMIN i bo'lishi k
 
 
 
+
 # // static async updateCategoryById(id: number, title: string, icon: string) {
 #     //     const oldCategory = await client.category.findUnique({
 #     //         where: { id }
@@ -82,5 +83,3 @@ saytga eng birinchi bo'lib kirgan foydalanuvchi saytning SUPERADMIN i bo'lishi k
 #     // }
 
 
-
-sdlfksdfllksdf

@@ -65,7 +65,7 @@ export default class BrandService {
     }
 
     static async findBrandByName(title: string) {
-        return client.brand.findUnique({
+        return client.brand.findFirst({
             where: {
                 title
             },

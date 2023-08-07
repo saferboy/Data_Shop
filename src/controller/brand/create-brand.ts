@@ -6,7 +6,7 @@ import CategoryService from '@service/category.service';
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const categoryId = +req.params.id
+        const categoryId = +req.body.categoryId
         const title = req.body.title
         const logoId = +req.body.logoId
 
@@ -34,20 +34,22 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const newBrand = await BrandService.createBrand(title, logoId, categoryId)
+        if (!oldBrand) {
+            const newBrand = await BrandService.createBrand(title, logoId, categoryId)
 
-        return res.status(201).json({
-            message: 'Brand created',
-            brand: {
-                id: newBrand.id,
-                title: newBrand.title,
-                logo: {
-                    id: newBrand.logo?.id,
-                    path: newBrand.logo?.path,
-                    title: newBrand.logo?.filename
+            return res.status(201).json({
+                message: 'Brand created',
+                brand: {
+                    id: newBrand.id,
+                    title: newBrand.title,
+                    logo: {
+                        id: newBrand.logo?.id,
+                        path: newBrand.logo?.path,
+                        title: newBrand.logo?.filename
+                    }
                 }
-            }
-        })
+            })
+        }
 
     } catch (err) {
         next(err);

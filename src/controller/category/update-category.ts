@@ -16,26 +16,21 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 message: 'Category not found'
             });
         }
-
-        if (oldCtg.icon) {
-            await FileService.deleteFile(oldCtg.icon.id)
-        }
-
         
         const newCtg = await CategoryService.updateCategoryById(id, oldCtg.title == title ? undefined : title, iconId)
         
-        if (oldCtg.icon?.id == newCtg.icon?.id) {
-            return res.status(200).json({
-                message: 'File not change'
-            });
-        }
+        // if (oldCtg.icon?.id == newCtg.icon?.id) {
+        //     return res.status(200).json({
+        //         message: 'File not change'
+        //     });
+        // }
         // if (oldCtg.title == newCtg.title) {
             //     return res.status(200).json({
         //         message: 'Siz hech qanday o\'zgarish kiritmadingiz'
         //     });
         // }
 
-        if (!newCtg.icon?.id) {
+        if (!newCtg.icon) {
             return res.status(400).json({
                 message: 'File not found'
             })

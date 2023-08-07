@@ -65,8 +65,9 @@ export class CategorySchema {
 
 export class BrandChema {
     static CreateBrand = Joi.object({
+        categoryId: Joi.number().min(1),
         title: Joi.string().min(1).required(),
-        logoId: Joi.number().min(1).required()
+        logoId: Joi.number().min(1)
     })
 
     static BrandParam = Joi.object({
