@@ -17,8 +17,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const removedBrnd = await BrandService.deleteBrand(id)
 
-        if (removedBrnd.logo) {
-            await FileService.deleteFile(removedBrnd.logo.id)
+        if (removedBrnd.icon) {
+            await FileService.deleteFile(removedBrnd.icon.id)
         }
 
         return res.status(200).json({
@@ -27,9 +27,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 id: removedBrnd.id,
                 title: removedBrnd.title,
                 logo: {
-                    id: removedBrnd.logo?.id,
-                    path: removedBrnd.logo?.path,
-                    filename: removedBrnd.logo?.filename
+                    id: removedBrnd.icon?.id,
+                    path: removedBrnd.icon?.path,
+                    filename: removedBrnd.icon?.filename
                 }
             }
         });

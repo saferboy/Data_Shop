@@ -4,21 +4,21 @@ const client = new PrismaClient()
 
 export default class BrandService {
 
-    static async createBrand(title: string, logoId: number, categoryId: number) {
+    static async createBrand(title: string, iconId: number, categoryId: number) {
         return client.brand.create({
             data: {
                 title,
                 categoryId,
-                logo: {
+                icon: {
                     connect: {
-                        id: logoId
+                        id: iconId
                     }
                 },
             },
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,
@@ -34,7 +34,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,
@@ -53,7 +53,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,
@@ -72,7 +72,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,
@@ -83,23 +83,23 @@ export default class BrandService {
         })
     }
 
-    static async updateBrandById(id: number, title: string, logoId: number) {
+    static async updateBrandById(id: number, title: string, iconId: number) {
         return client.brand.update({
             where: {
                 id
             },
             data: {
                 title,
-                logo: {
+                icon: {
                     connect: {
-                        id: logoId
+                        id: iconId
                     }
                 }
             },
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,
@@ -118,7 +118,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
-                logo: {
+                icon: {
                     select: {
                         id: true,
                         path: true,

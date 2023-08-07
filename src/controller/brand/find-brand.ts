@@ -20,9 +20,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 id: foundBrand.id,
                 title: foundBrand.title,
                 logo: {
-                    id: foundBrand.logo?.id,
-                    path: foundBrand.logo?.path,
-                    filename: foundBrand.logo?.filename
+                    id: foundBrand.icon?.id,
+                    path: foundBrand.icon?.path,
+                    filename: foundBrand.icon?.filename
                 }
             }
         });
