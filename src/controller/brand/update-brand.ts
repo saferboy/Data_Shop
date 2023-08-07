@@ -14,7 +14,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         if (!foundBrand) {
             return res.status(404).json({
-                message: 'Brand not found'
+                message: `Brand not found this id: ${brandId}`
             });
         }
 
@@ -26,14 +26,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const oldTitle = await BrandService.findBrandByName(title)
+        const oldBrand = await BrandService.findBrandByName(title)
 
-        // if (oldTitle) {
-        //     return res.status(200).json({
-        //         message: `Brand has already been created with the name: ${oldTitle.title}`
-        //     });
-        // }
-
+        if (oldBrand && (oldBrand.title === title && oldBrand.logo?.id === logoId)) {
+            return res.status(304).end();
+        }
+        
         const newBrand = await BrandService.updateBrandById(brandId, title, logoId)
 
         return res.status(200).json({
@@ -46,6 +44,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 filename: newBrand.logo?.filename
             }
         })
+
+
 
     } catch (err) {
         next(err);
