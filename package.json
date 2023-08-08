@@ -8,7 +8,7 @@
     "start:d": "nodemon -r module-alias/register ./lib/server.js",
     "build": "tsc",
     "dev": "nodemon src/server.ts",
-    "test": "ts-node src/server.ts"
+    "test": "echo \"No test available\""
   },
   "keywords": [],
   "_moduleAliases": {
