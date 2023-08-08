@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         if (!files) {
             return res.status(400).json({
-                message: "Files not uploaded"
+                message: "File not uploaded"
             })
         }
 
@@ -22,6 +22,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
             const result = await FileService.updateFile(iconId, dtos)
 
+            
             return res.status(201).json({
                 message: "New file uploaded",
                 data: result

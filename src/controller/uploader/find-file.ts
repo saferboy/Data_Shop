@@ -16,7 +16,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         }
 
         return res.status(200).json({
-            message: 'Retrive file',
+            message: `Retrive file by id: ${file.id}`,
             file: {
                 id: file.id,
                 path: file.path,

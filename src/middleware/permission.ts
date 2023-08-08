@@ -15,7 +15,7 @@ export const permission = (permissions: role[]) => {
 
         try {
             const payload = await verify(token);
-            console.log(payload);
+            // console.log(payload);
 
             const user = await AuthService.findUserById(payload.userId);
 

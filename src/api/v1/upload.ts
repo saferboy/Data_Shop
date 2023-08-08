@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { upload } from "@middleware/upload";
 
-import uploadFiles from "@controller/uploader/upload-files";
+import uploadFiles from "@controller/uploader/upload-file";
 import allFile from "@controller/uploader/all-file";
 import findFile from "@controller/uploader/find-file";
 import updateFile from "@controller/uploader/update-file";

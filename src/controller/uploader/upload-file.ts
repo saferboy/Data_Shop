@@ -20,10 +20,12 @@
 
                 const result = await FileService.createFile(dtos)
 
+                const responseMessage = dtos.length > 1 ? "Files uploaded" : "File uploaded";
+
                 return res.status(201).json({
-                    message: "Files uploaded",
+                    message: responseMessage,
                     data: result
-                })
+                });
             }
             else {
                 return res.status(400).json({

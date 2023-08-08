@@ -17,7 +17,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         const removed = await FileService.deleteFile(id)
 
         return res.status(200).json({
-            message: 'File removed',
+            message: `File removed by id: ${removed.id}`,
             icon: {
                 id: removed.id,
                 path: removed.path,
