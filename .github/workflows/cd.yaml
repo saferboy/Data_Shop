@@ -3,16 +3,14 @@ name: Dev CD
 on:
   push:
     branches: [master]
-    # branches: [dev]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Connect VPS and deploy changes
-        uses:  appleboy/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
