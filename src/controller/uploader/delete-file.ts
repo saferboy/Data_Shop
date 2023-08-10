@@ -18,7 +18,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         return res.status(200).json({
             message: `File removed by id: ${removed.id}`,
-            icon: {
+            file: {
                 id: removed.id,
                 path: removed.path,
                 filename: removed.filename

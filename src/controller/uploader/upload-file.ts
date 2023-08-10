@@ -24,7 +24,7 @@
 
                 return res.status(201).json({
                     message: responseMessage,
-                    data: result
+                    files: result
                 });
             }
             else {
