@@ -5,7 +5,10 @@ import AuthService from '@service/user.service';
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const allUser = await AuthService.allUsers()
+        const page = req.query.page ? +req.query.page : undefined
+        const limit = req.query.limit ? +req.query.limit : undefined
+
+        const allUser = await AuthService.allUsers(page, limit)
 
         const mapped = allUser.map(detail => {
             return {

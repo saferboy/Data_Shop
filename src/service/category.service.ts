@@ -62,8 +62,10 @@ export default class CategoryService {
         })
     }
 
-    static async findAllCategory() {
+    static async findAllCategory(page?: number, limit?: number) {
         return client.category.findMany({
+            skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
+            take: limit,
             include: {
                 icon: {
                     select: {

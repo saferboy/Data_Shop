@@ -4,7 +4,10 @@ import FileService from '@service/file.service';
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const allFile = await FileService.allFile()
+        const page = req.query.page ? +req.query.page : undefined
+        const limit = req.query.limit ? +req.query.limit : undefined
+
+        const allFile = await FileService.allFile(page, limit)
 
         const mapped = allFile.map(file => {
             return {

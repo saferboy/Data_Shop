@@ -4,7 +4,10 @@ import CategoryService from "@service/category.service";
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const allCtg = await CategoryService.findAllCategory()
+        const page = req.query.page ? +req.query.page : undefined
+        const limit = req.query.limit ? +req.query.limit : undefined
+
+        const allCtg = await CategoryService.findAllCategory(page, limit)
 
         const mapped = allCtg.map(fined => {
             return {

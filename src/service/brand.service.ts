@@ -29,8 +29,10 @@ export default class BrandService {
         })
     }
 
-    static async allBrands() {
+    static async allBrands(page?: number, limit?: number) {
         return client.brand.findMany({
+            skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
+            take: limit,
             select: {
                 id: true,
                 title: true,

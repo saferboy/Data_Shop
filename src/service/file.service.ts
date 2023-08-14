@@ -55,8 +55,10 @@ export default class FileService {
         })
     }
 
-    static async allFile() {
+    static async allFile(page?: number, limit?: number) {
         return client.file.findMany({
+            skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
+            take: limit,
             select: {
                 id: true,
                 path: true,

@@ -59,8 +59,11 @@ export default class AuthService {
         })
     }
 
-    static async allUsers() {
-        return client.user.findMany()
+    static async allUsers(page? : number, limit? : number) {
+        return client.user.findMany({
+            skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
+            take: limit
+        })
     }
 
     static async updateUserInfo(id: number, detail: Userbody) {
