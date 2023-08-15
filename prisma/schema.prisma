@@ -21,7 +21,7 @@ model User {
   comment  Comments[]
   favorite Favorite[]
   order    Order[]
-  role     role       @default(none)
+  role     role       @default(admin)
   basket   Basket?
 }
 
