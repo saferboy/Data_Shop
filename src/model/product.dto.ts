@@ -1,5 +1,24 @@
-export interface ProductBody {
-    name: string,
-    price: string,
-    description: string
-} 
+export interface ProductData {
+    title: string,
+    description: string,
+    incomePrice: string,
+    sellPrice: string,
+    discount: string,
+    count: number,
+    rating: number,
+    categoryId: number,
+}
+
+export interface AttributeValueData {
+    value: string;
+}
+
+export interface AttributeData {
+    name: string;
+    attributeValues: AttributeValueData[];
+}
+
+export interface ProductData {
+    name: string;
+    attributes: AttributeData[];
+}

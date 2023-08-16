@@ -18,7 +18,7 @@ model User {
   email    String
   address  String
   password String
-  comment  Comments[]
+  comment  Comment[]
   favorite Favorite[]
   order    Order[]
   role     role       @default(admin)
@@ -34,7 +34,7 @@ model Verification {
 
 model Category {
   id      Int       @id @default(autoincrement())
-  title   String    
+  title   String
   icon    File?
   product Product[]
   brand   Brand[]
@@ -42,7 +42,7 @@ model Category {
 
 model Brand {
   id         Int       @id @default(autoincrement())
-  title      String    
+  title      String
   icon       File?
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
@@ -56,22 +56,21 @@ model Product {
   incomePrice  String
   sellPrice    String
   discount     String
-  // type        String
   count        Int
   image        File[]
   rating       Int
-  category     Category    @relation(fields: [categoryId], references: [id])
+  category     Category?    @relation(fields: [categoryId], references: [id])
   categoryId   Int
   Brand        Brand?      @relation(fields: [brandId], references: [id])
   brandId      Int?
-  comment      Comments[]
+  comment      Comment[]
   favorite     Favorite[]
   oderItem     OrderItem[]
   BasketItem   BasketItem? @relation(fields: [basketItemId], references: [id])
   basketItemId Int?
 }
 
-model Comments {
+model Comment {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
