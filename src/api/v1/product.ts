@@ -15,8 +15,8 @@ import { permission } from "@middleware/permission";
 const router = Router()
 
     .post('/', permission(["admin", "supervisor"]), validator.body(ProductSchema.CreateProduct), createProduct)
-    .get('/:id', permission(["admin", "supervisor"]), validator.params(ProductSchema.ProductParam), findProduct)
-    .get('/', permission(["admin", "supervisor"]), allProduct)
+    .get('/:id', validator.params(ProductSchema.ProductParam), findProduct)
+    .get('/', allProduct)
     .put('/:id', permission(["admin", "supervisor"]), validator.body(ProductSchema.UpdateProduct), updateProduct)
 
 export default router
