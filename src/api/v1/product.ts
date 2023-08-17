@@ -17,7 +17,7 @@ const router = Router()
     .post('/', permission(["admin", "supervisor"]), validator.body(ProductSchema.CreateProduct), createProduct)
     .get('/:id', permission(["admin", "supervisor"]), validator.params(ProductSchema.ProductParam), findProduct)
     .get('/', permission(["admin", "supervisor"]), allProduct)
-    .put('/:id', permission(["admin", "supervisor"]), updateProduct)
+    .put('/:id', permission(["admin", "supervisor"]), validator.body(ProductSchema.UpdateProduct), updateProduct)
 
 export default router
 
