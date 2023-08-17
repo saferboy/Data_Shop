@@ -1,27 +1,62 @@
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { ProductData } from "@model/product.dto";
 
 const client = new PrismaClient()
 
 export default class ProductService {
 
-    // static async CreateProduct (item: ProductData, brandId: number, image: number[]) {
-    //     return client.product.create({
-    //         data: {
-    //             title: item.title,
-    //             description: item.description,
-    //             incomePrice: item.incomePrice,
-    //             sellPrice: item.sellPrice,
-    //             discount: item.discount,
-    //             count: item.count,
-    //             // image: {
-    //             //     connect: image.map(imageId => ({ id: imageId}))
-    //             // },
-    //             rating: item.rating,
-    //             brandId
-    //         }
-    //     })
-    // }
+    static async CreateProduct(item: ProductData, brandId: number, image: number[], categoryId: number) {
+
+        const productData: Prisma.ProductCreateInput = {
+            title: item.title,
+            description: item.description,
+            incomePrice: item.incomePrice,
+            sellPrice: item.sellPrice,
+            discount: item.discount,
+            count: item.count,
+            brand: {
+                connect: {
+                    id: brandId
+                }
+            },
+            category: {
+                connect: {
+                    id: categoryId
+                }
+            },
+        };
+
+        if (image && image.length > 0) {
+            productData.image = {
+                connect: image.map((imageId) => ({ id: imageId })),
+            };
+        }
+
+        return client.product.create({
+            data: {
+                title: item.title,
+                description: item.description,
+                incomePrice: item.incomePrice,
+                sellPrice: item.sellPrice,
+                discount: item.discount,
+                count: item.count,
+                image: {
+                    connect: image.map(imageId => ({ id: imageId }))
+                },
+                brandId,
+                categoryId
+            },
+            include: {
+                image: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
+            }
+        })
+    }
 
 
     static async findProductById(id: number) {
@@ -30,6 +65,7 @@ export default class ProductService {
                 id
             },
             select: {
+                id: true,
                 title: true,
                 description: true,
                 incomePrice: true,
@@ -43,7 +79,10 @@ export default class ProductService {
                         filename: true
                     }
                 },
-                rating: true
+                rating: true,
+                brandId: true,
+                categoryId: true,
+
             }
         })
     }
@@ -63,4 +102,48 @@ export default class ProductService {
             }
         })
     }
+
+    static async UpdateProduct(id: number, item: ProductData, image: number[]) {
+        const productData: Prisma.ProductUpdateInput = {
+            title: item.title,
+            description: item.description,
+            incomePrice: item.incomePrice,
+            sellPrice: item.sellPrice,
+            discount: item.discount,
+            count: item.count
+        };
+
+        if (image && image.length > 0) {
+            productData.image = {
+                connect: image.map((imageId) => ({ id: imageId })),
+            };
+        }
+
+        return client.product.update({
+            where: {
+                id
+            },
+            data: productData,
+            include: {
+                image: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+    // static async deleteProduct(id: number) {
+    //     return client.product.delete({
+    //         where: {
+    //             id
+    //         }
+    //     })
+    // }
 }

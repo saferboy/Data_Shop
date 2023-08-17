@@ -58,11 +58,11 @@ model Product {
   discount     String
   count        Int
   image        File[]
-  rating       Int
+  rating       Int @default(0)
   category     Category?    @relation(fields: [categoryId], references: [id])
   categoryId   Int
-  Brand        Brand?      @relation(fields: [brandId], references: [id])
-  brandId      Int?
+  brand        Brand?      @relation(fields: [brandId], references: [id])
+  brandId      Int
   comment      Comment[]
   favorite     Favorite[]
   oderItem     OrderItem[]

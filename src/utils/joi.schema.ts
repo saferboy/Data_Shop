@@ -72,6 +72,35 @@ export class BrandChema {
 
     static BrandParam = Joi.object({
         id: Joi.number().min(1).required()
-    }) 
+    })
+
+}
+
+export class ProductSchema {
+    static CreateProduct = Joi.object({
+        categoryId: Joi.number().min(1).required(),
+        brandId: Joi.number().min(1).required(),
+        title: Joi.string().min(1).required(),
+        description: Joi.string().min(1).required(),
+        incomePrice: Joi.string().min(1).required(),
+        sellPrice: Joi.string().min(1).required(),
+        discount: Joi.string().min(1).required(),
+        count: Joi.number().min(1).required(),
+        image: Joi.array().items(Joi.number())
+    })
+
+    static ProductParam = Joi.object({
+        id: Joi.number().min(1).required()
+    })
+
+    static UpdateProduct = Joi.object({
+        title: Joi.string().min(1).required(),
+        description: Joi.string().min(1).required(),
+        incomePrice: Joi.string().min(1).required(),
+        sellPrice: Joi.string().min(1).required(),
+        discount: Joi.string().min(1).required(),
+        count: Joi.number().min(1).required(),
+        image: Joi.array().items(Joi.number())
+    })
 
 }

@@ -6,7 +6,7 @@ export interface ProductData {
     discount: string,
     count: number,
     rating: number,
-    categoryId: number,
+    image: number[]
 }
 
 export interface AttributeValueData {
