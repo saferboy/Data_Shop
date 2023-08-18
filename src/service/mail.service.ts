@@ -16,7 +16,7 @@ export const sendEmail = async (email: string, code: string) => {
 
     const mailOption: Mail.Options = {
         from: EMAIL,
-        to: email, //email bo'lishi kerak
+        to: EMAIL, //email bo'lishi kerak
         subject: 'Email verification',
         text: `${email}, This is code to verify account : ${code}`
     }

@@ -139,11 +139,11 @@ export default class ProductService {
 
 
 
-    // static async deleteProduct(id: number) {
-    //     return client.product.delete({
-    //         where: {
-    //             id
-    //         }
-    //     })
-    // }
+    static async deleteProduct(id: number) {
+        return client.product.delete({
+            where: {
+                id
+            }
+        })
+    }
 }
