@@ -19,11 +19,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             brand: {
                 id: foundBrand.id,
                 title: foundBrand.title,
-                logo: {
-                    id: foundBrand.icon?.id,
-                    path: foundBrand.icon?.path,
-                    filename: foundBrand.icon?.filename
-                }
+                file: foundBrand.file
             }
         });
 

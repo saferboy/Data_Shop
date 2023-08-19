@@ -54,7 +54,7 @@ export class CategorySchema {
 
     static CreateCtg = Joi.object({
         title: Joi.string().min(1).required(),
-        iconId: Joi.number().min(1).required()
+        fileId: Joi.number().min(1).required()
     })
 
     static findCtg = Joi.object({

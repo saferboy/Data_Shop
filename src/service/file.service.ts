@@ -1,5 +1,4 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { error } from "node:console";
 import * as fsregular from 'node:fs'
 import path from "path";
 
@@ -42,10 +41,10 @@ export default class FileService {
     }
 
 
-    static async findFileById(iconId: number) {
+    static async findFileById(id: number) {
         return client.file.findUnique({
             where: {
-                id: iconId
+                id
             },
             select: {
                 id: true,
@@ -67,9 +66,9 @@ export default class FileService {
         })
     }
 
-    static async updateFile(iconId: number, dtos: CreatDto[]) {
+    static async updateFile(fileId: number, dtos: CreatDto[]) {
         const oldFile = await client.file.findUnique({
-            where: { id: iconId }
+            where: { id: fileId }
         })
 
         if (oldFile) {
@@ -95,7 +94,7 @@ export default class FileService {
                     filename: dto.filename
                 },
                 where: {
-                    id: iconId
+                    id: fileId
                 },
                 select: {
                     id: true,
@@ -110,11 +109,11 @@ export default class FileService {
         return files
     }
 
-    static async deleteFile(iconId: number) {
+    static async deleteFile(id: number) {
 
         const fileToDelete = await client.file.findUnique({
             where: {
-                id: iconId
+                id
             }
         })
 
@@ -124,7 +123,7 @@ export default class FileService {
 
         const result = await client.file.delete({
             where: {
-                id: iconId
+                id
             }
         })
         fsregular.rm(path.join(__dirname, '../../upload', result.path), (error) => {

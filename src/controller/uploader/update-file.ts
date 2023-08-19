@@ -5,7 +5,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const files = req.files
-        const iconId = +req.params.id
+        const fileId = +req.params.id
 
         if (!files) {
             return res.status(400).json({
@@ -20,7 +20,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 filename: file.originalname
             }))
 
-            const result = await FileService.updateFile(iconId, dtos)
+            const result = await FileService.updateFile(fileId, dtos)
 
             
             return res.status(201).json({

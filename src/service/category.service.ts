@@ -4,20 +4,16 @@ const client = new PrismaClient()
 
 export default class CategoryService {
 
-    static async createCategory(title: string, iconId: number) {
+    static async createCategory(title: string, fileId: number) {
         return client.category.create({
             data: {
                 title,
-                icon: {
-                    connect: {
-                        id: iconId
-                    }
-                }
+                fileId
             },
             select: {
                 id: true,
                 title: true,
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -36,9 +32,11 @@ export default class CategoryService {
             select: {
                 title: true,
                 id: true,
-                icon: {
+                file: {
                     select: {
-                        id: true
+                        id: true,
+                        path: true,
+                        filename: true
                     }
                 }
             }
@@ -51,7 +49,7 @@ export default class CategoryService {
                 id
             },
             include: {
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -67,7 +65,7 @@ export default class CategoryService {
             skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
             take: limit,
             include: {
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -78,23 +76,19 @@ export default class CategoryService {
         })
     }
 
-    static async updateCategoryById(id: number, title: string, iconId: number) {
+    static async updateCategoryById(id: number, title: string, fileId: number) {
         return client.category.update({
             where: {
                 id
             },
             data: {
                 title,
-                icon: {
-                    connect: {
-                        id: iconId
-                    }
-                }
+                fileId
             },
             select: {
                 id: true,
                 title: true,
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -113,7 +107,7 @@ export default class CategoryService {
             select: {
                 id: true,
                 title: true,
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -124,3 +118,4 @@ export default class CategoryService {
         })
     }
 }
+

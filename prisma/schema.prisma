@@ -35,7 +35,8 @@ model Verification {
 model Category {
   id      Int       @id @default(autoincrement())
   title   String
-  icon    File[]
+  file    File      @relation(fields: [fileId], references: [id])
+  fileId  Int
   product Product[]
   brand   Brand[]
 }
@@ -43,7 +44,8 @@ model Category {
 model Brand {
   id         Int       @id @default(autoincrement())
   title      String
-  icon       File[]
+  file       File      @relation(fields: [fileId], references: [id])
+  fileId     Int
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
   product    Product[]
@@ -136,15 +138,13 @@ model Favorite {
 }
 
 model File {
-  id         Int       @id @default(autoincrement())
-  path       String
-  filename   String
-  product    Product?  @relation(fields: [productId], references: [id])
-  productId  Int?
-  category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?
-  brand      Brand?    @relation(fields: [brandId], references: [id])
-  brandId    Int?
+  id        Int        @id @default(autoincrement())
+  path      String
+  filename  String
+  product   Product?   @relation(fields: [productId], references: [id])
+  productId Int?
+  category  Category[]
+  brand     Brand[]
 }
 
 model Order {

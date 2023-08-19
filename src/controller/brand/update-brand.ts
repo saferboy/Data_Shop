@@ -8,7 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const brandId = +req.params.id
         const title = req.body.title
-        const iconId = +req.body.iconId
+        const fileId = +req.body.fileId
 
         const foundBrand = await BrandService.findBrandById(brandId)
 
@@ -18,9 +18,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const foundLogo = await FileService.findFileById(iconId)
+        const foundFile = await FileService.findFileById(fileId)
 
-        if (!foundLogo) {
+        if (!foundFile) {
             return res.status(404).json({
                 message: 'File not found'
             });
@@ -28,21 +28,22 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const oldBrand = await BrandService.findBrandByName(title)
 
-        if (oldBrand && (oldBrand.title === title && oldBrand.icon?.id === iconId)) {
-            return res.status(304).end();
+        if (oldBrand && oldBrand.id === brandId && oldBrand.file?.id === fileId) {
+            return res.status(200).json({
+                message: 'No changes were made',
+                id: oldBrand.id,
+                title: oldBrand.title,
+                file: oldBrand.file
+            });
         }
-        
-        const newBrand = await BrandService.updateBrandById(brandId, title, iconId)
+
+        const newBrand = await BrandService.updateBrandById(brandId, title, fileId)
 
         return res.status(200).json({
             message: 'Brand updated',
             id: newBrand.id,
             title: newBrand.title,
-            logo: {
-                id: newBrand.icon?.id,
-                path: newBrand.icon?.path,
-                filename: newBrand.icon?.filename
-            }
+            file: newBrand.file
         })
 
 

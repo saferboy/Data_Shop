@@ -7,7 +7,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const id = +req.params.id
         const title = req.body.title
-        const iconId: number = +req.body.iconId
+        const fileId: number = +req.body.iconId
 
         const oldCtg = await CategoryService.findCategoryById(id)
 
@@ -17,23 +17,23 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const OldFile = await FileService.findFileById(iconId)
+        const OldFile = await FileService.findFileById(fileId)
 
         if (!OldFile) {
             return res.status(400).json({
-                message: `Icon not found this id: ${iconId}`
+                message: `Icon not found this id: ${fileId}`
             });
         }
 
-        if (oldCtg.title === title && oldCtg.icon?.id === iconId) {
-            return res.status(304).end();
+        const newCtg = await CategoryService.updateCategoryById(id, oldCtg.title == title ? undefined : title, fileId)
+
+        if (newCtg.title === oldCtg.title && newCtg.file?.id === oldCtg.file?.id) {
+            return res.status(200).json({
+                message: 'Category data is the same, no changes were made'
+            });
         }
 
-        const newCtg = await CategoryService.updateCategoryById(id, oldCtg.title == title ? undefined : title, iconId)
-
-
-
-        if (!newCtg.icon) {
+        if (!newCtg.file) {
             return res.status(400).json({
                 message: 'File not found'
             })
@@ -44,10 +44,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             category: {
                 id: newCtg.id,
                 title: newCtg.title,
-                icon: {
-                    id: newCtg.icon?.id,
-                    path: newCtg.icon?.path,
-                    filename: newCtg.icon?.filename
+                file: {
+                    id: newCtg.file.id,
+                    path: newCtg.file.path,
+                    filename: newCtg.file.filename
                 }
             }
         })

@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const thisBrand = await BrandService.findBrandById(id)
 
-        if(!thisBrand) {
+        if (!thisBrand) {
             return res.status(404).json({
                 message: 'Brand not found or alredy deleted'
             });
@@ -17,8 +17,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const removedBrnd = await BrandService.deleteBrand(id)
 
-        if (removedBrnd.icon) {
-            await FileService.deleteFile(removedBrnd.icon.id)
+        if (thisBrand.file) {
+            await FileService.deleteFile(thisBrand.file.id)
         }
 
         return res.status(200).json({
@@ -26,11 +26,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             brand: {
                 id: removedBrnd.id,
                 title: removedBrnd.title,
-                logo: {
-                    id: removedBrnd.icon?.id,
-                    path: removedBrnd.icon?.path,
-                    filename: removedBrnd.icon?.filename
-                }
+                file: removedBrnd.file
             }
         });
 

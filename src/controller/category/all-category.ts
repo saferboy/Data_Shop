@@ -13,7 +13,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             return {
                 id: fined.id,
                 title: fined.title,
-                icon: fined.icon,
+                file: {
+                    id: fined.file.id,
+                    path: fined.file.path,
+                    filename: fined.file.filename
+                }
             }
         })
 
