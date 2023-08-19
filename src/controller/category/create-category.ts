@@ -30,11 +30,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 category: {
                     id: newCtg.id,
                     title: newCtg.title,
-                    icon: {
-                        id: newCtg.icon?.id,
-                        path: newCtg.icon?.path,
-                        filename: newCtg.icon?.filename
-                    }
+                    icon: newCtg.fileId
                 }
             })
         }

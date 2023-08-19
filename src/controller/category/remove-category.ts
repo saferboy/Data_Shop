@@ -19,8 +19,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         
         const removedCtg = await CategoryService.deleteCategory(id)
         
-        if (removedCtg.icon) {
-            await FileService.deleteFile(removedCtg.icon.id)
+        if (removedCtg.file) {
+            await FileService.deleteFile(removedCtg.file.id)
         }
 
         return res.status(200).json({
@@ -29,9 +29,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 id: removedCtg.id,
                 title: removedCtg.title,
                 icon: {
-                    id: removedCtg.icon?.id,
-                    path: removedCtg.icon?.path,
-                    filename: removedCtg.icon?.filename
+                    id: removedCtg.file?.id,
+                    path: removedCtg.file?.path,
+                    filename: removedCtg.file?.filename
                 }
             }
         })

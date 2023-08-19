@@ -34,15 +34,16 @@ model Verification {
 
 model Category {
   id      Int       @id @default(autoincrement())
-  title   String    
-  icon    File?
+  title   String
+  file    File?     @relation(fields: [fileId], references: [id])
+  fileId  Int?
   product Product[]
   brand   Brand[]
 }
 
 model Brand {
   id         Int       @id @default(autoincrement())
-  title      String    
+  title      String
   icon       File?
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
@@ -50,25 +51,51 @@ model Brand {
 }
 
 model Product {
-  id           Int         @id @default(autoincrement())
+  id           Int                @id @default(autoincrement())
   title        String
   description  String
   incomePrice  String
   sellPrice    String
   discount     String
-  // type        String
   count        Int
   image        File[]
   rating       Int
-  category     Category    @relation(fields: [categoryId], references: [id])
+  category     Category           @relation(fields: [categoryId], references: [id])
   categoryId   Int
-  Brand        Brand?      @relation(fields: [brandId], references: [id])
+  Brand        Brand?             @relation(fields: [brandId], references: [id])
   brandId      Int?
   comment      Comments[]
   favorite     Favorite[]
   oderItem     OrderItem[]
-  BasketItem   BasketItem? @relation(fields: [basketItemId], references: [id])
+  BasketItem   BasketItem?        @relation(fields: [basketItemId], references: [id])
   basketItemId Int?
+  attributes   ProductAttribute[]
+}
+
+model Attribute {
+  id               Int                @id @default(autoincrement())
+  name             String
+  attributeValues  AttributeValue[]
+  ProductAttribute ProductAttribute[]
+}
+
+model AttributeValue {
+  id               Int                @id @default(autoincrement())
+  value            String
+  attribute        Attribute          @relation(fields: [attributeId], references: [id])
+  attributeId      Int
+  ProductAttribute ProductAttribute[]
+}
+
+model ProductAttribute {
+  product          Product        @relation(fields: [productId], references: [id])
+  attribute        Attribute      @relation(fields: [attributeId], references: [id])
+  attributeValue   AttributeValue @relation(fields: [attributeValueId], references: [id])
+  productId        Int
+  attributeId      Int
+  attributeValueId Int
+
+  @@unique([productId, attributeId, attributeValueId])
 }
 
 model Comments {
@@ -105,15 +132,14 @@ model Favorite {
 }
 
 model File {
-  id         Int       @id @default(autoincrement())
-  path       String
-  filename   String
-  product    Product?  @relation(fields: [productId], references: [id])
-  productId  Int?
-  category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?      @unique
-  brand      Brand?    @relation(fields: [brandId], references: [id])
-  brandId    Int?      @unique
+  id        Int        @id @default(autoincrement())
+  path      String
+  filename  String
+  product   Product?   @relation(fields: [productId], references: [id])
+  productId Int?
+  category  Category[]
+  brand     Brand?     @relation(fields: [brandId], references: [id])
+  brandId   Int?       @unique
 }
 
 model Order {

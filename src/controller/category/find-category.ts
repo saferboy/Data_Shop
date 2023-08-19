@@ -19,7 +19,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             category: {
                 id: find.id,
                 title: find.title,
-                icon: find.icon
+                icon: find.fileId
             }
         })
 

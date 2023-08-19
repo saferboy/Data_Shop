@@ -25,7 +25,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        if (oldCtg.title === title && oldCtg.icon?.id === iconId) {
+        if (oldCtg.title === title && oldCtg.file?.id === iconId) {
             return res.status(304).end();
         }
 
@@ -33,7 +33,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
 
 
-        if (!newCtg.icon) {
+        if (!newCtg.file) {
             return res.status(400).json({
                 message: 'File not found'
             })
@@ -45,9 +45,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 id: newCtg.id,
                 title: newCtg.title,
                 icon: {
-                    id: newCtg.icon?.id,
-                    path: newCtg.icon?.path,
-                    filename: newCtg.icon?.filename
+                    id: newCtg.file?.id,
+                    path: newCtg.file?.path,
+                    filename: newCtg.file?.filename
                 }
             }
         })

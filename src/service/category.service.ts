@@ -8,22 +8,12 @@ export default class CategoryService {
         return client.category.create({
             data: {
                 title,
-                icon: {
-                    connect: {
-                        id: iconId
-                    }
-                }
+                fileId: iconId
             },
             select: {
                 id: true,
                 title: true,
-                icon: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
+                fileId: true
             }
         })
     }
@@ -36,11 +26,7 @@ export default class CategoryService {
             select: {
                 title: true,
                 id: true,
-                icon: {
-                    select: {
-                        id: true
-                    }
-                }
+                file: true
             }
         })
     }
@@ -51,13 +37,7 @@ export default class CategoryService {
                 id
             },
             include: {
-                icon: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
+                file: true
             }
         })
     }
@@ -67,7 +47,7 @@ export default class CategoryService {
             skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
             take: limit,
             include: {
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -85,7 +65,7 @@ export default class CategoryService {
             },
             data: {
                 title,
-                icon: {
+                file: {
                     connect: {
                         id: iconId
                     }
@@ -94,7 +74,7 @@ export default class CategoryService {
             select: {
                 id: true,
                 title: true,
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -113,7 +93,7 @@ export default class CategoryService {
             select: {
                 id: true,
                 title: true,
-                icon: {
+                file: {
                     select: {
                         id: true,
                         path: true,
