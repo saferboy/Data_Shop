@@ -35,7 +35,7 @@ model Verification {
 model Category {
   id      Int       @id @default(autoincrement())
   title   String
-  icon    File?
+  icon    File[]
   product Product[]
   brand   Brand[]
 }
@@ -43,7 +43,7 @@ model Category {
 model Brand {
   id         Int       @id @default(autoincrement())
   title      String
-  icon       File?
+  icon       File[]
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
   product    Product[]
@@ -58,8 +58,8 @@ model Product {
   discount     String
   count        Int
   image        File[]
-  rating       Int @default(0)
-  category     Category?    @relation(fields: [categoryId], references: [id])
+  rating       Int         @default(0)
+  category     Category?   @relation(fields: [categoryId], references: [id])
   categoryId   Int
   brand        Brand?      @relation(fields: [brandId], references: [id])
   brandId      Int
@@ -68,6 +68,38 @@ model Product {
   oderItem     OrderItem[]
   BasketItem   BasketItem? @relation(fields: [basketItemId], references: [id])
   basketItemId Int?
+  schemaId     Int?
+  attributes   Attribute[]
+}
+
+model Attribute {
+  id        Int      @id @default(autoincrement())
+  key       String
+  type      KeyType
+  value     String
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
+}
+
+model Schema {
+  id    Int         @id @default(autoincrement())
+  title String
+  keys  SchemaKey[]
+}
+
+model SchemaKey {
+  id   Int     @id @default(autoincrement())
+  key  String
+  type KeyType
+
+  schema   Schema? @relation(fields: [schemaId], references: [id])
+  schemaId Int?
+}
+
+enum KeyType {
+  number
+  string
+  boolean
 }
 
 model Comment {
@@ -110,9 +142,9 @@ model File {
   product    Product?  @relation(fields: [productId], references: [id])
   productId  Int?
   category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?      @unique
+  categoryId Int?
   brand      Brand?    @relation(fields: [brandId], references: [id])
-  brandId    Int?      @unique
+  brandId    Int?
 }
 
 model Order {
