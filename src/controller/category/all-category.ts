@@ -9,14 +9,14 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const allCtg = await CategoryService.findAllCategory(page, limit)
 
-        const mapped = allCtg.map(fined => {
+        const mapped = allCtg.map(item => {
             return {
-                id: fined.id,
-                title: fined.title,
+                id: item.id,
+                title: item.title,
                 file: {
-                    id: fined.file.id,
-                    path: fined.file.path,
-                    filename: fined.file.filename
+                    id: item.file.id,
+                    path: item.file.path,
+                    filename: item.file.filename
                 }
             }
         })
