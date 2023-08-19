@@ -21,6 +21,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             }
         })
 
+        
+
         return res.status(201).json({
             message: 'Retrive all category',
             category: mapped
