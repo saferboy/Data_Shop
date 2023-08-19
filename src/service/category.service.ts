@@ -64,14 +64,10 @@ export default class CategoryService {
         return client.category.findMany({
             skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
             take: limit,
-            include: {
-                file: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
+            select: {
+                id: true,
+                title: true,
+                file: true
             }
         })
     }
