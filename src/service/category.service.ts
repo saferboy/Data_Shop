@@ -63,13 +63,7 @@ export default class CategoryService {
             select: {
                 id: true,
                 title: true,
-                file: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
+                file: true
             }
         })
     }
