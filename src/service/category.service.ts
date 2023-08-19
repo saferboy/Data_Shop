@@ -48,14 +48,10 @@ export default class CategoryService {
             where: {
                 id
             },
-            include: {
-                file: {
-                    select: {
-                        id: true,
-                        path: true,
-                        filename: true
-                    }
-                }
+            select: {
+                id: true,
+                title: true,
+                file: true
             }
         })
     }
