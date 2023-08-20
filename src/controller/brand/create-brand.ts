@@ -22,7 +22,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         if (!foundLogo) {
             return res.status(400).json({
-                message: 'Logo not found'
+                message: 'File not found'
             });
         }
 
@@ -42,6 +42,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 brand: {
                     id: newBrand.id,
                     title: newBrand.title,
+                    categoryId: newBrand.categoryId,
                     file: {
                         id: newBrand.file.id,
                         path: newBrand.file.path,

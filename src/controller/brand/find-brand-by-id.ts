@@ -19,6 +19,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             brand: {
                 id: foundBrand.id,
                 title: foundBrand.title,
+                categoryId: foundBrand.categoryId,
                 file: foundBrand.file
             }
         });

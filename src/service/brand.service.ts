@@ -14,6 +14,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
+                categoryId: true,
                 file: {
                     select: {
                         id: true,
@@ -32,6 +33,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
+                categoryId: true,
                 file: {
                     select: {
                         id: true,
@@ -51,6 +53,7 @@ export default class BrandService {
             select: {
                 id: true,
                 title: true,
+                categoryId: true,
                 file: {
                     select: {
                         id: true,

@@ -13,6 +13,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             return {
                 id: brand.id,
                 title: brand.title,
+                categoryId: brand.categoryId,
                 file: brand.file
             }
         })
