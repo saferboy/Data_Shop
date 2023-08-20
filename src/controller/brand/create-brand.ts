@@ -8,7 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const categoryId = +req.body.categoryId
         const title = req.body.title
-        const iconId = +req.body.iconId
+        const fileId = +req.body.fileId
 
         const foundCtg = await CategoryService.findCategoryById(categoryId)
 
@@ -18,7 +18,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const foundLogo = await FileService.findFileById(iconId)
+        const foundLogo = await FileService.findFileById(fileId)
 
         if (!foundLogo) {
             return res.status(400).json({
@@ -35,7 +35,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         }
 
         if (!oldBrand) {
-            const newBrand = await BrandService.createBrand(title, iconId, categoryId)
+            const newBrand = await BrandService.createBrand(title, fileId, categoryId)
 
             return res.status(201).json({
                 message: 'Brand created',
