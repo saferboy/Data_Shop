@@ -28,7 +28,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 discount: foundP.discount,
                 count: foundP.count,
                 rating: foundP.rating,
-                image: foundP.image.map(img => {
+                file: foundP.file.map(img => {
                     return {
                         id: img.id,
                         path: img.path,

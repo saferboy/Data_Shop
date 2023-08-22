@@ -7,7 +7,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const id = +req.params.id
         const title = req.body.title
-        const fileId: number = +req.body.iconId
+        const fileId: number = +req.body.fileId
 
         const oldCtg = await CategoryService.findCategoryById(id)
 

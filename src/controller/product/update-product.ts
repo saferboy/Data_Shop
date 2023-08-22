@@ -3,10 +3,11 @@ import ProductService from '@service/product.service';
 import { ProductData } from '@model/product.dto';
 
 export default async (req: Request, res: Response, next: NextFunction) => {
+
     try {
         const id = +req.params.id;
         const item: ProductData = req.body;
-        const image: number[] = req.body.image;
+        const file: number[] = req.body.file
 
         if (!item || Object.keys(item).length === 0) {
             return res.status(400).json({
@@ -25,7 +26,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         const result = await ProductService.UpdateProduct(
             id,
             item,
-            image
+            file
         )
 
         if (
@@ -35,7 +36,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             result.sellPrice === oldProduct.sellPrice &&
             result.discount === oldProduct.discount &&
             result.count === oldProduct.count &&
-            JSON.stringify(result.image) === JSON.stringify(oldProduct.image)
+            JSON.stringify(result.file) === JSON.stringify(oldProduct.file)
         ) {
             return res.status(200).json({
                 message: 'No changes detected in the product data',
@@ -49,7 +50,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                     sellPrice: result.sellPrice,
                     discount: result.discount,
                     count: result.count,
-                    image: result.image,
+                    file: result.file,
                 }
             })
         }
@@ -66,11 +67,15 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 sellPrice: result.sellPrice,
                 discount: result.discount,
                 count: result.count,
-                image: result.image,
+                file: result.file
             }
         })
 
     } catch (err) {
         next(err)
     }
-};
+}
+
+
+
+

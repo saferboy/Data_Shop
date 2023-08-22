@@ -9,8 +9,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     const item: ProductData = req.body
 
-    const image: number[] = req.body.image
-    
+    const file: number[] = req.body.file
+
     const brandId = +req.body.brandId
 
     const foundBrand = await BrandService.findBrandById(brandId)
@@ -25,13 +25,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     const foundCtg = await CategoryService.findCategoryById(categoryId)
 
-    if(!foundCtg) {
+    if (!foundCtg) {
       return res.status(400).json({
         message: `Category not found by id: ${foundCtg}`
       });
     }
 
-    const result = await ProductService.CreateProduct(item, brandId, image, categoryId)
+    const result = await ProductService.CreateProduct(item, brandId, file, categoryId)
 
     return res.status(201).json({
       message: 'Product created',
@@ -41,11 +41,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         id: result.id,
         title: result.title,
         description: result.description,
-        incomePrice:  result.incomePrice,
+        incomePrice: result.incomePrice,
         sellPrice: result.sellPrice,
         discount: result.discount,
         count: result.count,
-        image: result.image
+        file: result.file
       }
     });
 

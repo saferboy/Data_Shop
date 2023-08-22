@@ -5,7 +5,7 @@ const client = new PrismaClient()
 
 export default class ProductService {
 
-    static async CreateProduct(item: ProductData, brandId: number, image: number[], categoryId: number) {
+    static async CreateProduct(item: ProductData, brandId: number, file: number[], categoryId: number) {
 
         const productData: Prisma.ProductCreateInput = {
             title: item.title,
@@ -26,9 +26,9 @@ export default class ProductService {
             },
         };
 
-        if (image && image.length > 0) {
-            productData.image = {
-                connect: image.map((imageId) => ({ id: imageId })),
+        if (file && file.length > 0) {
+            productData.file = {
+                connect: file.map((fileId) => ({ id: fileId })),
             };
         }
 
@@ -40,14 +40,14 @@ export default class ProductService {
                 sellPrice: item.sellPrice,
                 discount: item.discount,
                 count: item.count,
-                image: {
-                    connect: image.map(imageId => ({ id: imageId }))
+                file: {
+                    connect: file.map(fileId => ({ id: fileId }))
                 },
                 brandId,
                 categoryId
             },
             include: {
-                image: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -72,7 +72,7 @@ export default class ProductService {
                 sellPrice: true,
                 discount: true,
                 count: true,
-                image: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -92,7 +92,7 @@ export default class ProductService {
             skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
             take: limit,
             include: {
-                image: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -103,29 +103,38 @@ export default class ProductService {
         })
     }
 
-    static async UpdateProduct(id: number, item: ProductData, image: number[]) {
+    static async UpdateProduct(id: number, item: ProductData, file: number[]) {
         const productData: Prisma.ProductUpdateInput = {
             title: item.title,
             description: item.description,
             incomePrice: item.incomePrice,
             sellPrice: item.sellPrice,
             discount: item.discount,
-            count: item.count
+            count: item.count,
         };
 
-        if (image && image.length > 0) {
-            productData.image = {
-                connect: image.map((imageId) => ({ id: imageId })),
+        if (file && file.length > 0) {
+            productData.file = {
+                connect: file.map((fileId) => ({ id: fileId })),
             };
         }
+
 
         return client.product.update({
             where: {
                 id
             },
-            data: productData,
+            data: {
+                title: item.title,
+                description: item.description,
+                incomePrice: item.incomePrice,
+                sellPrice: item.sellPrice,
+                discount: item.discount,
+                count: item.count,
+                file: productData.file
+            },
             include: {
-                image: {
+                file: {
                     select: {
                         id: true,
                         path: true,
@@ -136,13 +145,19 @@ export default class ProductService {
         });
     }
 
-
-
-
     static async deleteProduct(id: number) {
         return client.product.delete({
             where: {
                 id
+            },
+            select: {
+                file: {
+                    select: {
+                        id: true,
+                        path: true,
+                        filename: true
+                    }
+                }
             }
         })
     }

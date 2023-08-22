@@ -5,8 +5,8 @@ export interface ProductData {
     sellPrice: string,
     discount: string,
     count: number,
-    rating: number,
-    image: number[]
+    rating: number
+    file: number[]
 }
 
 export interface AttributeValueData {
@@ -18,7 +18,7 @@ export interface AttributeData {
     attributeValues: AttributeValueData[];
 }
 
-export interface ProductData {
-    name: string;
-    attributes: AttributeData[];
-}
+// export interface ProductData {
+//     name: string;
+//     attributes: AttributeData[];
+// }

@@ -8,6 +8,7 @@ import brand from './brand'
 import product from './product'
 import upload from './upload'
 import comment from './comment'
+import schema from './schema'
 
 const router = Router()
 
@@ -18,5 +19,6 @@ const router = Router()
     .use('/product', product)
     .use('/upload', upload)
     .use('/comment', comment)
+    .use('/schema', schema)
 
 export default router

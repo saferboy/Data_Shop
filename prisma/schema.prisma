@@ -59,7 +59,7 @@ model Product {
   sellPrice    String
   discount     String
   count        Int
-  image        File[]
+  file         File[]
   rating       Int         @default(0)
   category     Category?   @relation(fields: [categoryId], references: [id])
   categoryId   Int
@@ -70,8 +70,8 @@ model Product {
   oderItem     OrderItem[]
   BasketItem   BasketItem? @relation(fields: [basketItemId], references: [id])
   basketItemId Int?
-  schemaId     Int?
   attributes   Attribute[]
+  schemaId     Int?
 }
 
 model Attribute {
@@ -97,7 +97,7 @@ model SchemaKey {
   schema   Schema? @relation(fields: [schemaId], references: [id])
   schemaId Int?
 }
-
+ 
 enum KeyType {
   number
   string

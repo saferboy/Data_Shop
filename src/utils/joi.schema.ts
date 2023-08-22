@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import { title } from 'node:process';
 
 export class AuthSchemas {
     static register = Joi.object({
@@ -86,7 +85,7 @@ export class ProductSchema {
         sellPrice: Joi.string().min(1).required(),
         discount: Joi.string().min(1).required(),
         count: Joi.number().min(1).required(),
-        image: Joi.array().items(Joi.number())
+        file: Joi.array().items(Joi.number())
     })
 
     static ProductParam = Joi.object({
@@ -100,7 +99,12 @@ export class ProductSchema {
         sellPrice: Joi.string().min(1).required(),
         discount: Joi.string().min(1).required(),
         count: Joi.number().min(1).required(),
-        image: Joi.array().items(Joi.number())
+        file: Joi.array().items(Joi.number())
     })
+
+    // static SchemaData = Joi.object({
+    //     title: Joi.string().min(1).required(),
+    //     keys: Joi.array().min(1).required
+    // })
 
 }

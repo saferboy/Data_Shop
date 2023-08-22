@@ -22,7 +22,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 discount: item.discount,
                 count: item.count,
                 rating: item.rating,
-                image: item.image.map((img) => {
+                file: item.file.map((img) => {
                    return {
                     id: img.id,
                     path: img.path,
