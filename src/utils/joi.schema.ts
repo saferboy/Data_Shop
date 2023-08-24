@@ -108,3 +108,12 @@ export class ProductSchema {
     // })
 
 }
+
+export class CommentSchema {
+    
+    static CreateComment = Joi.object({
+        productId: Joi.number().min(1).required(),
+        comment: Joi.string().min(1).required(),
+        rate: Joi.number().min(1)
+    })
+}

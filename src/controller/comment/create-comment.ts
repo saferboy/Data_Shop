@@ -6,17 +6,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const userId = res.locals.payload.userId
-        console.log(userId);
         
         const productId = +req.body.productId
-        console.log(productId);
         
         const comment = req.body.comment
-        console.log(comment);
         
-        const rate = +req.body.rate
-        console.log(rate);
-        
+        const rate = +req.body.rate        
 
         const foundProduct = await ProductService.findProductById(productId)
 
@@ -34,11 +29,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         return res.status(200).json({
             message: 'Your comment is sending',
             comment: {
+                userId: newComment.userId,
+                productId: newComment.productId,
                 id: newComment.id,
                 comment: newComment.comment,
-                rate: newComment.rate,
-                userId: newComment.userId,
-                productId: newComment.productId
+                rate: newComment.rate
             }
         });
 
