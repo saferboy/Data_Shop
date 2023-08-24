@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import AuthService from '@service/user.service';
 import { verify } from '@service/jwt.service';
 import { role } from '@prisma/client';
+import { Payload } from '@prisma/client/runtime';
 
 export const permission = (permissions: role[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {

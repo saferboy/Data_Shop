@@ -21,7 +21,7 @@ model User {
   comment  Comment[]
   favorite Favorite[]
   order    Order[]
-  role     role       @default(admin)
+  role     role       @default(none)
   basket   Basket?
 }
 
@@ -97,7 +97,7 @@ model SchemaKey {
   schema   Schema? @relation(fields: [schemaId], references: [id])
   schemaId Int?
 }
- 
+
 enum KeyType {
   number
   string

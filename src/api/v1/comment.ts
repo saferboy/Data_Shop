@@ -11,7 +11,7 @@ import { permission } from "@middleware/permission";
 
 const router = Router()
 
-    .post('/:productId', createComment)
+    .post('/', permission(["admin", "supervisor", "none", "user"]), createComment)
 
 export default router
 

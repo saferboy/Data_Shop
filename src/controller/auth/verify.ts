@@ -53,7 +53,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
         const token = await sign(payload)
 
-        const updateUser = await AuthService.changeUserRole(user.id, 'admin')
+        const updateUser = await AuthService.changeUserRole(user.id, 'user')
 
         return res.status(201).json({
             message: 'Succesfully registered',

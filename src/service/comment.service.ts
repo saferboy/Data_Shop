@@ -4,13 +4,20 @@ const client = new PrismaClient()
 
 export default class CommentService {
 
-    static async createComment(userId: number, commentdata: CommentData, productId: number) {
+    static async createComment(userId: number, productId: number, comment: string, rate: number) {
         return client.comment.create({
             data: {
-                userId,
-                comment: commentdata.comment,
+                comment,
+                rate,
                 productId,
-                rate: commentdata.rate
+                userId
+            },
+            select: {
+                id: true,
+                comment: true,
+                rate: true,
+                productId: true,
+                userId: true
             }
         })
     }

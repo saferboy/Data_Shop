@@ -22,7 +22,7 @@ export default class SchemaService {
         })
     }
 
-    static async findAllSchema(page? : number, limit?: number) {
+    static async findAllSchema(page?: number, limit?: number) {
         return client.schema.findMany({
             skip: page ? ((page - 1) * (limit ?? 0)) + 1 : undefined,
             take: limit,
@@ -42,6 +42,29 @@ export default class SchemaService {
             }
         })
     }
+
+    // static async updateSchema(schemaId: number, newData: SchemaData) {
+    //     return client.schema.update({
+    //         where: {
+    //             id: schemaId
+    //         },
+    //         data: {
+    //             title: newData.title,
+    //             keys: {
+    //                 updateMany: newData.keys.map(key => ({
+    //                     where: { key: key.id },
+    //                     data: {
+    //                         key: key.key,
+    //                         type: key.type
+    //                     }
+    //                 }))
+    //             }
+    //         },
+    //         include: {
+    //             keys: true
+    //         }
+    //     })
+    // }
 
     static async deleteSchemaById(id: number) {
         return client.schema.delete({

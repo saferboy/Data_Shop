@@ -1,16 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
 import CommentService from '@service/comment.service';
 import ProductService from '@service/product.service';
-import { CommentData } from '@model/comment.dto';
-
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     try {
 
-        const userId = res.locals.userId
-
-        const productId = +req.params.productId
-
+        const userId = res.locals.payload.userId
+        console.log(userId);
+        
+        const productId = +req.body.productId
+        console.log(productId);
+        
+        const comment = req.body.comment
+        console.log(comment);
+        
+        const rate = +req.body.rate
+        console.log(rate);
+        
 
         const foundProduct = await ProductService.findProductById(productId)
 
@@ -20,9 +26,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
-        const item: CommentData = req.body
 
-        const newComment = await CommentService.createComment(userId, item, productId)
+        const newComment = await CommentService.createComment(userId, productId, comment, rate)
+        
+        console.log(newComment.userId);
 
         return res.status(200).json({
             message: 'Your comment is sending',

@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         }
 
         return res.status(200).json({
-            message: 'Retrive schema',
+            message: `Retrive schema by id: ${id}`,
             schema: {
                 id: oldSchema.id,
                 title: oldSchema.title,
