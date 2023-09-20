@@ -29,8 +29,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         return res.status(200).json({
             message: 'Your comment is sending',
             comment: {
-                userId: newComment.userId,
-                productId: newComment.productId,
+                user: {
+                    id: newComment.user.id,
+                    name: newComment.user.name 
+                },
                 id: newComment.id,
                 comment: newComment.comment,
                 rate: newComment.rate

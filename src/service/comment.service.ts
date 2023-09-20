@@ -12,12 +12,13 @@ export default class CommentService {
                 productId,
                 userId
             },
-            select: {
-                id: true,
-                comment: true,
-                rate: true,
-                productId: true,
-                userId: true
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                }
             }
         })
     }
@@ -26,6 +27,14 @@ export default class CommentService {
         return client.comment.findUnique({
             where: {
                 id
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                }
             }
         })
     }
@@ -46,6 +55,14 @@ export default class CommentService {
             data: {
                 comment: item.comment,
                 rate: item.rate
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                }
             }
         })
     }

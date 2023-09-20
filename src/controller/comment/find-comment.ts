@@ -17,7 +17,10 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         return res.status(200).json({
             message: `Retrive comment by id: ${comment.id}`,
             comment: {
-                userId: comment.userId,
+                user: {
+                    id: comment.user.id,
+                    name: comment.user.name
+                },
                 productId: comment.productId,
                 id: comment.id,
                 comment: comment.comment,
