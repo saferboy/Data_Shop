@@ -18,7 +18,7 @@ const router = Router()
 
     .post('/', permission(['admin', 'supervisor']), validator.body(CategorySchema.CreateCtg), createCategory)
     .get('/:id', validator.params(CategorySchema.findCtg), findCategory)
-    .get('/', permission(['admin', "supervisor", "none", "user"]), allCategory)
+    .get('/',  allCategory)
     .put('/:id', permission(['admin', 'supervisor']), updateCategory)
     .delete('/:id', permission(['admin', 'supervisor']), removeCategory)
 
