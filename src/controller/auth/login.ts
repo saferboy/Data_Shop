@@ -51,7 +51,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
                 email: user.email,
                 address: user.address,
                 role: user.role,
-                password: user.password 
             },
             token: token,
         });
