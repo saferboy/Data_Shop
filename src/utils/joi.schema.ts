@@ -117,3 +117,10 @@ export class CommentSchema {
         rate: Joi.number().min(1)
     })
 }
+
+export class FavoriteSchema {
+    
+    static FindFavorite = Joi.object({
+        id: Joi.number().min(1).required()
+    })
+}
